@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Somalia–Yemen multi-country results framework</title>
+<style>
+  :root { --ink:#14211d; --paper:#fbfaf6; --teal:#0f6b5c; --ochre:#a85e29;
+           --brick:#9c3b2e; --slate:#5f6b66; --rule:#ded8cb; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink);
+          font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+          font-size:15px; line-height:1.55; }
+  .sheet { max-width:1040px; margin:0 auto; padding:56px 40px 72px; }
+  .eyebrow { font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+              color:var(--teal); font-weight:600; }
+  h1 { font-size:34px; line-height:1.2; margin:10px 0 8px; letter-spacing:-.02em; }
+  .meta { color:var(--slate); font-size:13px; }
+  .rule { height:2px; background:var(--ink); margin:26px 0 0; }
+  .lead { font-size:16px; max-width:74ch; margin:26px 0 0; }
+  .kpis { display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+           background:var(--rule); border:1px solid var(--rule); margin:34px 0 0; }
+  .kpi { background:#fff; padding:18px 18px 16px; }
+  .kpi .n { font-size:30px; font-weight:650; letter-spacing:-.02em; line-height:1.1; }
+  .kpi .k { font-size:11px; letter-spacing:.09em; text-transform:uppercase;
+             color:var(--slate); margin-top:8px; }
+  .kpi.good .n { color:var(--teal); } .kpi.warn .n { color:var(--ochre); }
+  .kpi.bad .n { color:var(--brick); }
+  h2 { font-size:13px; letter-spacing:.1em; text-transform:uppercase; margin:44px 0 12px;
+        padding-bottom:7px; border-bottom:1px solid var(--rule); }
+  table { width:100%; border-collapse:collapse; font-size:13.5px; }
+  th { text-align:left; font-weight:600; font-size:11px; letter-spacing:.07em;
+        text-transform:uppercase; color:var(--slate); padding:8px 10px;
+        border-bottom:1px solid var(--rule); }
+  td { padding:11px 10px; border-bottom:1px solid #eee9df; vertical-align:top; }
+  .w40 { width:40%; } .w35 { width:33%; }
+  .num { text-align:right; font-variant-numeric:tabular-nums; }
+  code { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px;
+          background:#f1eee6; padding:1px 5px; border-radius:3px; }
+  .lvl { display:inline-block; font-size:10px; letter-spacing:.06em; text-transform:uppercase;
+          color:var(--slate); border:1px solid var(--rule); border-radius:2px;
+          padding:0 4px; margin-right:7px; vertical-align:1px; }
+  .pill { display:inline-block; font-size:11.5px; padding:2px 9px; border-radius:11px;
+           color:var(--c); border:1px solid var(--c); white-space:nowrap;
+           background:color-mix(in srgb, var(--c) 8%, white); }
+  .flags { margin:0; padding-left:15px; font-size:12.5px; color:#43504b; }
+  .flags li { margin:0 0 4px; }
+  .flags b { color:var(--ink); font-weight:600; }
+  .muted { color:var(--slate); font-size:12.5px; }
+  .chart-wrap { background:#fff; border:1px solid var(--rule); padding:10px 6px 6px; }
+  .chart { width:100%; height:auto; display:block; }
+  .tick { font-size:10.5px; fill:#8a938e; }
+  .legend-row { display:flex; flex-wrap:wrap; gap:14px; padding:4px 14px 10px; }
+  .legend { font-size:11.5px; color:var(--slate); display:inline-flex; align-items:center; gap:6px; }
+  .legend i { width:14px; height:2.5px; display:inline-block; }
+  ul.decisions { list-style:none; margin:0; padding:0; font-size:13px; }
+  ul.decisions li { padding:7px 0; border-bottom:1px solid #eee9df; }
+  ul.causes { list-style:none; margin:0; padding:0; }
+  ul.causes li { display:grid; grid-template-columns:132px 1fr 34px; align-items:center;
+                  gap:12px; padding:5px 0; font-size:13px; }
+  .cause-name { color:var(--ink); }
+  .cause-bar { height:7px; background:#eee9df; border-radius:1px; overflow:hidden; }
+  .cause-bar i { display:block; height:100%; }
+  .cause-count { text-align:right; font-variant-numeric:tabular-nums; color:var(--slate); }
+  .dot { display:inline-block; width:7px; height:7px; border-radius:50%;
+          margin-right:9px; vertical-align:1px; }
+  .note { background:#fff; border:1px solid var(--rule); border-left:3px solid var(--teal);
+           padding:16px 18px; font-size:13px; margin-top:14px; }
+  footer { margin-top:52px; padding-top:16px; border-top:1px solid var(--rule);
+            font-size:11.5px; color:var(--slate); }
+  footer p { margin:0 0 6px; }
+  @media print { body { background:#fff; } .sheet { padding:0; } }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <div class="eyebrow">Anticipatory action data desk</div>
+  <h1>Somalia–Yemen multi-country results framework</h1>
+  <div class="meta">Audit of 13 indicators against the humanitarian indicator registry ·
+    publication target: public · generated 09 November 2026, 22:38 UTC</div>
+  <div class="rule"></div>
+
+  <p class="lead">1 of 13 indicators are backed by data that exists at the promised geography, cadence and disaggregation. 9 more are reportable only with a stated caveat, and 3 have no identified data trail and will need either reformulation or a funded collection instrument.</p>
+  <p class="lead">The binding constraint is not the absence of hazard data: 9 indicators sit on sources that exist, are documented and are licensed, yet need a join to administrative boundaries, a survey round, or a partner agreement before they can be reported on a schedule.</p>
+
+  <div class="kpis">
+    <div class="kpi"><div class="n">13</div><div class="k">indicators audited</div></div>
+    <div class="kpi good"><div class="n">1</div><div class="k">monitorable as written</div></div>
+    <div class="kpi warn"><div class="n">9</div><div class="k">conditional</div></div>
+    <div class="kpi bad"><div class="n">3</div><div class="k">no data trail</div></div>
+  </div>
+
+  <h2>Where the caveats come from</h2>
+  <ul class="causes"><li><span class='cause-name'>availability</span><span class='cause-bar'><i style='width:100%;background:#a85e29'></i></span><span class='cause-count'>11</span></li><li><span class='cause-name'>disclosure</span><span class='cause-bar'><i style='width:55%;background:#a85e29'></i></span><span class='cause-count'>6</span></li><li><span class='cause-name'>cadence</span><span class='cause-bar'><i style='width:18%;background:#a85e29'></i></span><span class='cause-count'>2</span></li><li><span class='cause-name'>disaggregation</span><span class='cause-bar'><i style='width:9%;background:#a85e29'></i></span><span class='cause-count'>1</span></li><li><span class='cause-name'>match</span><span class='cause-bar'><i style='width:9%;background:#9c3b2e'></i></span><span class='cause-count'>1</span></li></ul>
+  <p class="muted" style="margin-top:6px">Count of indicators flagged by each check.
+    Amber: reportable with a stated caveat. Red: a hard blocker.</p>
+
+  <h2>Indicator by indicator</h2>
+  <table>
+    <thead><tr><th>Indicator</th><th>Registry</th><th>Status</th><th>What stands in the way</th></tr></thead>
+    <tbody><tr><td class='w40'><span class='lvl'>Outcome</span>Share of targeted households with adequate food consumption (FCS)</td><td><code>FS-FCS</code></td><td><span class="pill" style="--c:#a85e29">conditional</span></td><td class='w35'><ul class='flags'><li><b>availability</b> — source exists but needs preparation (World Food Programme (VAM))</li><li><b>disaggregation</b> — source supports displacement_status, geography, sex_of_head; promised sex is not available</li></ul></td></tr><tr><td class='w40'><span class='lvl'>Output</span>Number of people reached with emergency cash assistance</td><td><code>FS-CASH-REACH</code></td><td><span class="pill" style="--c:#a85e29">conditional</span></td><td class='w35'><ul class='flags'><li><b>availability</b> — source exists but needs preparation (Implementing organisation)</li><li><b>disclosure</b> — source is &#x27;internal&#x27;; only reviewed aggregate figures may be published</li></ul></td></tr><tr><td class='w40'><span class='lvl'>Output</span>Total population in target districts by year</td><td><code>POP-DENOM</code></td><td><span class="pill" style="--c:#0f6b5c">monitorable</span></td><td class='w35'><span class="muted">no caveats</span></td></tr><tr><td class='w40'><span class='lvl'>Outcome</span>Number of people living in areas exposed to 1-in-100-year river flooding</td><td><code>HAZ-FLOOD-EXPO</code></td><td><span class="pill" style="--c:#a85e29">conditional</span></td><td class='w35'><ul class='flags'><li><b>availability</b> — source exists but needs preparation (ISIMIP data portal (hosted by IIASA))</li></ul></td></tr><tr><td class='w40'><span class='lvl'>Outcome</span>Days between early-warning trigger and first disbursement</td><td><code>AA-TRIGGER-LATENCY</code></td><td><span class="pill" style="--c:#a85e29">conditional</span></td><td class='w35'><ul class='flags'><li><b>availability</b> — source exists but needs preparation (Implementing organisation)</li><li><b>disclosure</b> — source is &#x27;internal&#x27;; only reviewed aggregate figures may be published</li></ul></td></tr><tr><td class='w40'><span class='lvl'>Output</span>Percentage of response delivered through local partners</td><td><code>LOC-PARTNER-SHARE</code></td><td><span class="pill" style="--c:#a85e29">conditional</span></td><td class='w35'><ul class='flags'><li><b>availability</b> — source exists but needs preparation (Implementing organisation)</li><li><b>disclosure</b> — source is &#x27;internal&#x27;; only reviewed aggregate figures may be published</li></ul></td></tr><tr><td class='w40'><span class='lvl'>Outcome</span>Number of people displaced by conflict in the target governorate</td><td><code>PROT-DISPLACED</code></td><td><span class="pill" style="--c:#a85e29">conditional</span></td><td class='w35'><ul class='flags'><li><b>availability</b> — source exists but needs preparation (IDMC / Norwegian Refugee Council)</li><li><b>cadence</b> — promised quarterly; source runs annual — values will be carried forward, not measured</li></ul></td></tr><tr><td class='w40'><span class='lvl'>Outcome</span>Crop yield anomaly against the five-year average</td><td><code>AG-YIELD-ANOMALY</code></td><td><span class="pill" style="--c:#a85e29">conditional</span></td><td class='w35'><ul class='flags'><li><b>availability</b> — source exists but needs preparation (ISIMIP data portal (hosted by IIASA))</li></ul></td></tr><tr><td class='w40'><span class='lvl'>Output</span>Number of access constraint incidents affecting humanitarian delivery</td><td><code>PROT-ACCESS</code></td><td><span class="pill" style="--c:#a85e29">conditional</span></td><td class='w35'><ul class='flags'><li><b>availability</b> — source exists but needs preparation (ACAPS)</li><li><b>disclosure</b> — source is &#x27;internal&#x27;; only reviewed aggregate figures may be published</li></ul></td></tr><tr><td class='w40'><span class='lvl'>Outcome</span>Reduction in prevalence of global acute malnutrition (GAM)</td><td><code>NUT-GAM</code></td><td><span class="pill" style="--c:#a85e29">conditional</span></td><td class='w35'><ul class='flags'><li><b>availability</b> — source exists but needs preparation (Survey implementing agency; UNICEF for global estimates)</li><li><b>cadence</b> — promised monthly; source runs biennial — values will be carried forward, not measured</li></ul></td></tr><tr><td class='w40'><span class='lvl'>Output</span>Number of beneficiaries with disability status recorded</td><td><code>IM-DISABILITY</code></td><td><span class="pill" style="--c:#9c3b2e">not monitorable</span></td><td class='w35'><ul class='flags'><li><b>availability</b> — no consistent data source identified across the portfolio</li><li><b>disclosure</b> — source is &#x27;internal&#x27;; only reviewed aggregate figures may be published</li></ul></td></tr><tr><td class='w40'><span class='lvl'>Outcome</span>Percentage of women among decision-makers in partner organisations</td><td><code>GEN-DECISION</code></td><td><span class="pill" style="--c:#9c3b2e">not monitorable</span></td><td class='w35'><ul class='flags'><li><b>availability</b> — no consistent data source identified across the portfolio</li><li><b>disclosure</b> — source is &#x27;internal&#x27;; only reviewed aggregate figures may be published</li></ul></td></tr><tr><td class='w40'><span class='lvl'>Output</span>Number of community feedback mechanisms established and functional</td><td><code>—</code></td><td><span class="pill" style="--c:#5f6b66">unmatched</span></td><td class='w35'><ul class='flags'><li><b>match</b> — best score 0.09 below threshold 0.45</li></ul></td></tr></tbody>
+  </table>
+
+  <h2>Denominators, from the ISIMIP national series</h2>
+  <p class="muted" style="margin-top:0">Index of national population, 1960 = 100, to 2020.
+    Source: ISIMIP2a / HYDE national population, hosted by IIASA, retrieved with checksum verification.</p>
+  <div class="chart-wrap"><svg viewBox="0 0 960 320" role="img" aria-label="Population denominators by country, indexed" class="chart"><line x1="64" y1="276.0" x2="944" y2="276.0" stroke="#e2ddd2" stroke-width="1"/><text x="54" y="280.0" text-anchor="end" class="tick">0</text><line x1="64" y1="211.5" x2="944" y2="211.5" stroke="#e2ddd2" stroke-width="1"/><text x="54" y="215.5" text-anchor="end" class="tick">146</text><line x1="64" y1="147.0" x2="944" y2="147.0" stroke="#e2ddd2" stroke-width="1"/><text x="54" y="151.0" text-anchor="end" class="tick">292</text><line x1="64" y1="82.5" x2="944" y2="82.5" stroke="#e2ddd2" stroke-width="1"/><text x="54" y="86.5" text-anchor="end" class="tick">439</text><line x1="64" y1="18.0" x2="944" y2="18.0" stroke="#e2ddd2" stroke-width="1"/><text x="54" y="22.0" text-anchor="end" class="tick">585</text><text x="64.0" y="304" text-anchor="middle" class="tick">1960</text><text x="240.0" y="304" text-anchor="middle" class="tick">1972</text><text x="416.0" y="304" text-anchor="middle" class="tick">1984</text><text x="592.0" y="304" text-anchor="middle" class="tick">1996</text><text x="768.0" y="304" text-anchor="middle" class="tick">2008</text><text x="944.0" y="304" text-anchor="middle" class="tick">2020</text><polyline points="64.0,231.9 78.7,230.6 93.3,229.3 108.0,227.9 122.7,226.5 137.3,224.9 152.0,223.2 166.7,221.4 181.3,219.6 196.0,218.0 210.7,216.5 225.3,215.2 240.0,214.1 254.7,213.1 269.3,212.0 284.0,210.7 298.7,209.2 313.3,207.4 328.0,205.5 342.7,203.5 357.3,201.4 372.0,199.4 386.7,197.3 401.3,195.1 416.0,192.9 430.7,190.7 445.3,188.4 460.0,186.0 474.7,183.6 489.3,181.2 504.0,178.8 518.7,176.5 533.3,174.2 548.0,171.9 562.7,169.7 577.3,167.3 592.0,165.0 606.7,162.6 621.3,160.3 636.0,157.9 650.7,155.6 665.3,153.2 680.0,151.0 694.7,148.7 709.3,146.7 724.0,144.7 738.7,142.9 753.3,141.3 768.0,139.8 782.7,138.3 797.3,136.7 812.0,135.1 826.7,133.5 841.3,131.8 856.0,130.1 870.7,128.4 885.3,126.8 900.0,125.3 914.7,123.7 929.3,122.2 944.0,120.6" fill="none" stroke="#0f6b5c" stroke-width="2.2" stroke-linejoin="round"/><circle cx="944.0" cy="120.6" r="3.4" fill="#0f6b5c"/><polyline points="64.0,231.9 78.7,231.0 93.3,230.1 108.0,229.2 122.7,228.3 137.3,227.4 152.0,226.4 166.7,225.5 181.3,224.6 196.0,223.5 210.7,222.4 225.3,221.2 240.0,219.9 254.7,218.6 269.3,217.2 284.0,215.9 298.7,214.7 313.3,213.5 328.0,212.3 342.7,211.0 357.3,209.7 372.0,208.2 386.7,206.7 401.3,205.0 416.0,203.2 430.7,201.2 445.3,198.9 460.0,196.5 474.7,193.9 489.3,191.2 504.0,188.4 518.7,185.6 533.3,182.7 548.0,179.6 562.7,176.5 577.3,173.1 592.0,169.6 606.7,165.9 621.3,161.9 636.0,157.8 650.7,153.4 665.3,148.7 680.0,143.7 694.7,138.5 709.3,133.3 724.0,128.0 738.7,122.8 753.3,117.6 768.0,112.3 782.7,106.9 797.3,101.3 812.0,95.4 826.7,89.3 841.3,83.0 856.0,76.5 870.7,70.1 885.3,63.6 900.0,57.0 914.7,50.3 929.3,43.5 944.0,36.6" fill="none" stroke="#a85e29" stroke-width="2.2" stroke-linejoin="round"/><circle cx="944.0" cy="36.6" r="3.4" fill="#a85e29"/><polyline points="64.0,231.9 78.7,230.8 93.3,229.7 108.0,228.6 122.7,227.4 137.3,226.2 152.0,224.9 166.7,223.7 181.3,222.3 196.0,220.9 210.7,219.4 225.3,217.8 240.0,216.0 254.7,214.2 269.3,212.6 284.0,211.1 298.7,210.0 313.3,209.0 328.0,208.1 342.7,207.1 357.3,205.8 372.0,204.1 386.7,202.0 401.3,199.7 416.0,197.3 430.7,194.7 445.3,192.1 460.0,189.4 474.7,186.5 489.3,183.5 504.0,180.2 518.7,176.8 533.3,173.1 548.0,169.4 562.7,165.6 577.3,161.9 592.0,158.2 606.7,154.6 621.3,150.9 636.0,147.3 650.7,143.5 665.3,139.6 680.0,135.6 694.7,131.5 709.3,127.4 724.0,123.2 738.7,118.9 753.3,114.7 768.0,110.3 782.7,105.9 797.3,101.3 812.0,96.7 826.7,91.9 841.3,87.0 856.0,82.1 870.7,77.1 885.3,72.0 900.0,67.0 914.7,61.8 929.3,56.6 944.0,51.4" fill="none" stroke="#3f6b8f" stroke-width="2.2" stroke-linejoin="round"/><circle cx="944.0" cy="51.4" r="3.4" fill="#3f6b8f"/><polyline points="64.0,231.9 78.7,230.9 93.3,230.0 108.0,229.0 122.7,228.0 137.3,226.9 152.0,225.7 166.7,224.3 181.3,223.0 196.0,221.8 210.7,220.9 225.3,220.4 240.0,220.4 254.7,219.9 269.3,217.9 284.0,213.9 298.7,207.3 313.3,198.7 328.0,189.3 342.7,180.7 357.3,174.2 372.0,170.3 386.7,168.5 401.3,168.1 416.0,168.0 430.7,167.3 445.3,165.7 460.0,163.6 474.7,161.3 489.3,159.2 504.0,157.6 518.7,156.6 533.3,156.1 548.0,155.6 562.7,154.6 577.3,152.7 592.0,149.7 606.7,145.7 621.3,141.2 636.0,136.4 650.7,131.7 665.3,127.3 680.0,122.9 694.7,118.5 709.3,114.1 724.0,109.3 738.7,104.4 753.3,99.3 768.0,94.0 782.7,88.6 797.3,83.0 812.0,77.4 826.7,71.7 841.3,65.8 856.0,59.7 870.7,53.3 885.3,46.8 900.0,40.0 914.7,33.0 929.3,25.7 944.0,18.2" fill="none" stroke="#6b7a3f" stroke-width="2.2" stroke-linejoin="round"/><circle cx="944.0" cy="18.2" r="3.4" fill="#6b7a3f"/><polyline points="64.0,231.9 78.7,231.1 93.3,230.3 108.0,229.5 122.7,228.7 137.3,227.9 152.0,227.0 166.7,226.0 181.3,225.1 196.0,224.1 210.7,223.2 225.3,222.3 240.0,221.3 254.7,220.4 269.3,219.2 284.0,217.7 298.7,216.0 313.3,214.0 328.0,211.7 342.7,209.3 357.3,206.7 372.0,204.1 386.7,201.2 401.3,198.3 416.0,195.2 430.7,192.0 445.3,188.7 460.0,185.3 474.7,181.7 489.3,177.7 504.0,173.2 518.7,168.0 533.3,162.3 548.0,156.4 562.7,150.7 577.3,145.3 592.0,140.5 606.7,136.0 621.3,131.9 636.0,127.8 650.7,123.5 665.3,119.1 680.0,114.6 694.7,110.0 709.3,105.2 724.0,100.4 738.7,95.5 753.3,90.5 768.0,85.3 782.7,80.0 797.3,74.6 812.0,69.1 826.7,63.5 841.3,57.8 856.0,52.1 870.7,46.4 885.3,40.7 900.0,35.0 914.7,29.3 929.3,23.7 944.0,18.0" fill="none" stroke="#7a4a5c" stroke-width="2.2" stroke-linejoin="round"/><circle cx="944.0" cy="18.0" r="3.4" fill="#7a4a5c"/></svg><div class="legend-row"><span class="legend"><i style="background:#0f6b5c"></i>Bangladesh</span><span class="legend"><i style="background:#a85e29"></i>Chad</span><span class="legend"><i style="background:#3f6b8f"></i>Ethiopia</span><span class="legend"><i style="background:#6b7a3f"></i>Somalia</span><span class="legend"><i style="background:#7a4a5c"></i>Yemen</span></div></div>
+
+  <h2>Why the baseline year matters</h2>
+  <table>
+    <thead><tr><th>Country</th><th class="num">Population 2019</th>
+      <th class="num">Population 2020</th><th class="num">Change</th>
+      <th class="num">Since 1960</th></tr></thead>
+    <tbody><tr><td>Bangladesh</td><td class='num'>168.1 m</td><td class='num'>169.8 m</td><td class='num'>+1.0%</td><td class='num'>+252%</td></tr><tr><td>Chad</td><td class='num'>15.8 m</td><td class='num'>16.3 m</td><td class='num'>+3.0%</td><td class='num'>+443%</td></tr><tr><td>Ethiopia</td><td class='num'>110.1 m</td><td class='num'>112.8 m</td><td class='num'>+2.4%</td><td class='num'>+409%</td></tr><tr><td>Somalia</td><td class='num'>15.6 m</td><td class='num'>16.1 m</td><td class='num'>+3.0%</td><td class='num'>+484%</td></tr><tr><td>Yemen</td><td class='num'>29.6 m</td><td class='num'>30.2 m</td><td class='num'>+2.2%</td><td class='num'>+485%</td></tr></tbody>
+  </table>
+  <p class="muted">A denominator that moves by several percent between baseline and reporting
+    year moves any “share of population” indicator with it, independently of programme effect.</p>
+
+  <h2>Disclosure gate</h2>
+  <ul class="decisions"><li><span class='dot' style='background:#0f6b5c'></span><b>FS-FCS</b> &#x27;public&#x27; output fits a &#x27;public&#x27; product</li><li><span class='dot' style='background:#a85e29'></span><b>FS-CASH-REACH</b> source is &#x27;internal&#x27;; only reviewed aggregate figures may be published</li><li><span class='dot' style='background:#0f6b5c'></span><b>POP-DENOM</b> &#x27;public&#x27; output fits a &#x27;public&#x27; product</li><li><span class='dot' style='background:#0f6b5c'></span><b>HAZ-FLOOD-EXPO</b> &#x27;public&#x27; output fits a &#x27;public&#x27; product</li><li><span class='dot' style='background:#a85e29'></span><b>AA-TRIGGER-LATENCY</b> source is &#x27;internal&#x27;; only reviewed aggregate figures may be published</li><li><span class='dot' style='background:#a85e29'></span><b>LOC-PARTNER-SHARE</b> source is &#x27;internal&#x27;; only reviewed aggregate figures may be published</li><li><span class='dot' style='background:#0f6b5c'></span><b>PROT-DISPLACED</b> &#x27;public&#x27; output fits a &#x27;public&#x27; product</li><li><span class='dot' style='background:#0f6b5c'></span><b>AG-YIELD-ANOMALY</b> &#x27;public&#x27; output fits a &#x27;public&#x27; product</li><li><span class='dot' style='background:#a85e29'></span><b>PROT-ACCESS</b> source is &#x27;internal&#x27;; only reviewed aggregate figures may be published</li><li><span class='dot' style='background:#0f6b5c'></span><b>NUT-GAM</b> &#x27;public&#x27; output fits a &#x27;public&#x27; product</li><li><span class='dot' style='background:#a85e29'></span><b>IM-DISABILITY</b> source is &#x27;internal&#x27;; only reviewed aggregate figures may be published</li><li><span class='dot' style='background:#a85e29'></span><b>GEN-DECISION</b> source is &#x27;internal&#x27;; only reviewed aggregate figures may be published</li></ul>
+  <div class="note">Outputs derived from programme systems are aggregated before publication and
+    cell counts below five are generalised. The gate refuses record-level fields outright rather
+    than relying on reviewer memory.</div>
+
+  <footer>
+    <p><b>Provenance.</b> Population series: ISIMIP2a input dataset
+      <code>population_histsoc_national_annual</code>, version 20210526, retrieved from
+      data.isimip.org; SHA-512 verified against the digest published by the portal.
+      Indicator registry: config/registry/indicators.yml, 13 assessments this run.</p>
+    <p><b>Limitations.</b> The audit tests whether data exists and is usable; it does not test
+      whether an indicator measures what its result statement claims. Gridded hazard layers
+      (flood, crop) are catalogued and licensed but require an administrative boundary raster
+      before they become national indicators.</p>
+    <p>Generated by aadesk. Example framework is illustrative and does not describe a real proposal.</p>
+  </footer>
+</div>
+</body>
+</html>

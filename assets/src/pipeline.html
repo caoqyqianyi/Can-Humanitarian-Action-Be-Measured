@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>aadesk pipeline</title>
+<style>
+  :root {
+    --ink: #14211d; --slate: #5f6b66; --rule: #ded8cb;
+    --teal: #0f6b5c; --ochre: #a85e29; --brick: #9c3b2e; --paper: #fbfaf6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1280px; background: var(--paper); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .canvas { padding: 34px 40px 30px; }
+  .head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 26px; }
+  .eyebrow { font-size: 10.5px; letter-spacing: .15em; text-transform: uppercase;
+             color: var(--teal); font-weight: 700; }
+  .head h1 { font-size: 19px; font-weight: 650; letter-spacing: -.01em; }
+  .head .note { margin-left: auto; font-size: 11px; color: var(--slate); }
+
+  .flow { display: flex; align-items: stretch; gap: 0; }
+  .stage { flex: 1; }
+  .card {
+    background: #fff; border: 1px solid var(--rule); border-radius: 3px;
+    padding: 13px 14px 14px; height: 100%;
+  }
+  .step { font-size: 9.5px; letter-spacing: .12em; text-transform: uppercase;
+          color: var(--slate); margin-bottom: 7px; }
+  .card h2 { font-size: 14px; font-weight: 650; line-height: 1.25; margin-bottom: 9px; }
+  .card ul { list-style: none; font-size: 11.5px; line-height: 1.5; color: #33413c; }
+  .card li { display: flex; gap: 4px; margin-bottom: 4px; }
+  .card li span.k { color: var(--slate); min-width: 62px; flex: none; }
+  .card li b { font-weight: 600; }
+  .accent { height: 3px; border-radius: 2px; margin-bottom: 11px; }
+  .arrow { width: 30px; display: flex; align-items: center; justify-content: center;
+           color: #b9b2a4; font-size: 15px; }
+
+  .verdicts { margin-top: 2px; display: grid; gap: 5px; }
+  .verdict { display: flex; align-items: center; gap: 7px; font-size: 11px; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+
+  .lower { display: flex; gap: 14px; margin-top: 18px; align-items: stretch; }
+  .outputs { flex: 2.2; border: 1px solid var(--rule); background: #fff;
+             border-radius: 3px; padding: 12px 14px 13px; }
+  .outputs .step { margin-bottom: 9px; }
+  .files { display: flex; gap: 9px; }
+  .file { flex: 1; border: 1px solid #eae5d9; border-left: 2px solid var(--teal);
+          padding: 8px 10px; font-size: 11.5px; }
+  .file code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+               font-size: 11px; color: var(--ink); }
+  .file p { color: var(--slate); font-size: 10.5px; margin-top: 3px; }
+
+  .gate { flex: 1.15; border: 1px solid var(--rule); background: #fff;
+          border-radius: 3px; padding: 12px 14px 13px; }
+  .gate h2 { font-size: 12.5px; font-weight: 650; margin-bottom: 7px; }
+  .gate p { font-size: 11px; color: #33413c; line-height: 1.45; }
+  .gate .tier { margin-top: 6px; font-size: 10.5px; color: var(--slate); }
+
+  .foot { margin-top: 16px; display: flex; gap: 18px; font-size: 10.5px; color: var(--slate); }
+  .foot b { color: var(--ink); font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="canvas">
+
+  <div class="head">
+    <span class="eyebrow">aadesk</span>
+    <h1>From evidence to a framework you can actually report on</h1>
+    <span class="note">one command: <b>aadesk audit framework.csv</b></span>
+  </div>
+
+  <div class="flow">
+
+    <div class="stage">
+      <div class="card">
+        <div class="accent" style="background:#5f6b66"></div>
+        <div class="step">01 · evidence</div>
+        <h2>Sources, with custodian and licence</h2>
+        <ul>
+          <li><span class="k">ISIMIP</span><span>portal hosted by IIASA — population, flood depth, crop yield</span></li>
+          <li><span class="k">Systems</span><span>programme MIS, distribution and partnership records</span></li>
+          <li><span class="k">Published</span><span>IDMC, ACAPS, WFP VAM, UNICEF</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="arrow">&#8594;</div>
+
+    <div class="stage">
+      <div class="card">
+        <div class="accent" style="background:#3f6b8f"></div>
+        <div class="step">02 · registry</div>
+        <h2>12 indicators, each declared</h2>
+        <ul>
+          <li><span class="k">unit</span><span>persons · percent · days · incidents</span></li>
+          <li><span class="k">cadence</span><span>monthly? annual? survey-driven?</span></li>
+          <li><span class="k">splits</span><span>sex · age · disability · geography</span></li>
+          <li><span class="k">tier</span><span>public · internal · restricted</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="arrow">&#8594;</div>
+
+    <div class="stage">
+      <div class="card">
+        <div class="accent" style="background:#a85e29"></div>
+        <div class="step">03 · audit</div>
+        <h2>Match, then five checks</h2>
+        <ul>
+          <li><span class="k">match</span><span>token + phrase similarity, 0.45 floor</span></li>
+          <li><span class="k">checks</span><span>availability · disaggregation · cadence<br>geography &amp; baseline · disclosure</span></li>
+          <li><span class="k">rule</span><span>no match beats a wrong match</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="arrow">&#8594;</div>
+
+    <div class="stage">
+      <div class="card">
+        <div class="accent" style="background:#14211d"></div>
+        <div class="step">04 · verdict, per line</div>
+        <h2>What can be promised</h2>
+        <div class="verdicts">
+          <div class="verdict"><span class="dot" style="background:#0f6b5c"></span><span><b>monitorable</b> — 1 of 13</span></div>
+          <div class="verdict"><span class="dot" style="background:#a85e29"></span><span><b>conditional</b> — 9, caveat written down</span></div>
+          <div class="verdict"><span class="dot" style="background:#9c3b2e"></span><span><b>no data trail</b> — 3, reformulate</span></div>
+        </div>
+        <ul style="margin-top:11px">
+          <li><span class="k">why</span><span>failures are separated so each has a fix</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="lower">
+    <div class="outputs">
+      <div class="step">05 · what you get</div>
+      <div class="files">
+        <div class="file"><code>scorecard.csv</code><p>one row per indicator, every flag</p></div>
+        <div class="file"><code>brief.html</code><p>printable brief, inline SVG, no network</p></div>
+        <div class="file"><code>powerbi/</code><p>two dimensions, two facts</p></div>
+      </div>
+    </div>
+    <div class="gate">
+      <h2>Disclosure gate</h2>
+      <p>An output may never be published at a higher visibility than its most sensitive input.</p>
+      <div class="tier">internal &#8594; public: <b>review</b> · restricted &#8594; public: <b>refused</b> · counts &lt; 5: <b>generalised</b></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span><b>SHA-512</b> verified on every download</span>
+    <span><b>Licence</b> captured at retrieval, not assumed</span>
+    <span><b>31 tests</b> · CI on 3.11 / 3.12</span>
+    <span><b>Dependencies</b> pandas, PyYAML — nothing else</span>
+  </div>
+
+</div>
+</body>
+</html>

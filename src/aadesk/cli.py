@@ -108,7 +108,8 @@ def cmd_audit(args: argparse.Namespace) -> int:
     for assessment in assessments:
         check = next((c for c in assessment.checks if c.name == "disclosure"), None)
         if check and check.status != "pass":
-            print(f"    {assessment.matched_id:<16}{check.status.upper():<7}{check.detail[:48]}")
+            label = (assessment.matched_id or "—")[:17]
+            print(f"    {label:<18}{check.status.upper():<7}{check.detail[:48]}")
     print(_line())
     print(f"  scorecard     {scorecard}")
     print(f"  records       {outdir / 'assessments.json'}")

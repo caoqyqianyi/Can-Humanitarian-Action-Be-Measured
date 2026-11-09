@@ -7,6 +7,10 @@
 ![licence](https://img.shields.io/badge/code-MIT-14211d)
 ![data](https://img.shields.io/badge/data-ISIMIP%20%2F%20IIASA-a85e29)
 
+<img src="assets/brief-header.png" alt="The generated brief: Somalia–Yemen multi-country results framework, 13 indicators audited, 1 monitorable, 9 conditional, 3 with no data trail, plus a breakdown of where the caveats come from" width="940">
+
+<sub>The brief the tool actually emits for the example framework — one page, printable, no network required. Screenshot of `output/brief.html`, not a mock-up.</sub>
+
 ---
 
 ## The problem this is built around
@@ -34,6 +38,19 @@ measurement — or as an indicator quietly dropped and never mentioned again.
 3. **Gates the output**, because the data behind half of these indicators is
    internal: aggregate figures can be published after review, record-level
    data cannot, and small cell counts are generalised.
+
+---
+
+## How it works
+
+<img src="assets/pipeline.png" alt="Pipeline: evidence sources with custodian and licence, a 12-indicator registry, a matcher and five checks, then a per-line verdict; below, the three outputs and the disclosure gate" width="1000">
+
+<sub>Evidence is declared before it is matched, and every output passes the gate on its way out — not afterwards.</sub>
+
+The registry is the only place a claim about data is written down, and it is data,
+not prose: each indicator carries its unit, cadence, promised disaggregation, custodian
+and disclosure tier. That is what makes the audit mechanical enough to run in CI
+against every new framework.
 
 ---
 
@@ -95,6 +112,10 @@ Matching is deliberately conservative: below a 0.45 score the line is reported a
 **unmatched** rather than forced onto the nearest entry, because a confident answer
 about the wrong source is worse than an honest gap.
 
+<img src="assets/brief-table.png" alt="Indicator-by-indicator table: each line carries a status pill (monitorable, conditional) and the specific caveat that stands in the way" width="940">
+
+<sub>One line per indicator. The pill is the verdict; the column beside it names the exact constraint, so it can be fixed rather than argued about.</sub>
+
 Full method, thresholds and known weaknesses: [`docs/methodology.md`](docs/methodology.md).
 
 ---
@@ -128,6 +149,10 @@ The shipped extract covers **238 national units, 1901–2020, annual**, in thous
 of persons, converted to persons with the raw column kept so the unit conversion
 stays auditable. Full digest and retrieval record:
 [`data/reference/PROVENANCE.md`](data/reference/PROVENANCE.md).
+
+<img src="assets/brief-chart.png" alt="Indexed national population, 1960 = 100, to 2020 for Bangladesh, Chad, Ethiopia, Somalia and Yemen; below, a table of 2019 and 2020 populations with change and growth since 1960" width="940">
+
+<sub>Population is a denominator here, not a headline. Indexing to 1960 keeps five countries on one axis; the Somalia step in the late 1980s is visible without a caption, and the table underneath carries the numbers the line cannot.</sub>
 
 **What is catalogued but not yet computed.** The registry also references the
 ISIMIP CaMa-Flood 100-year flood-depth layer and the gridded crop-model output.
@@ -184,6 +209,7 @@ aadesk/
 │   ├── extract.py                  rule-based indicator extraction from proposal text
 │   └── cli.py
 ├── docs/                           methodology · data protection · extraction · limitations
+├── assets/                         figures in this README (re-renderable sources in assets/src/)
 ├── tests/                          31 tests, including regression cases
 └── output/                         example run: scorecard, brief, Power BI model
 ```
@@ -206,6 +232,33 @@ pytest
 
 Dependencies are `pandas` and `PyYAML` only. The brief renders with no plotting
 library and no external assets.
+
+`make test`, `make audit` and `make brief` do the same three steps; `make pages`
+regenerates the brief into `docs/index.html` so GitHub Pages can serve it.
+
+---
+
+## Publishing the brief
+
+The brief is a single self-contained HTML file, so it can be published as-is.
+
+```bash
+gh repo create aa-data-desk --public --source=. --push
+```
+
+Without the GitHub CLI:
+
+```bash
+git remote add origin git@github.com:<your-handle>/aa-data-desk.git
+git push -u origin main
+```
+
+Then **Settings → Pages → Build and deployment → Deploy from a branch**, branch
+`main`, folder `/docs`. The example run is then readable at
+`https://<your-handle>.github.io/aa-data-desk/` without anyone cloning the repo.
+
+Replace `qianyi` in `CITATION.cff`, `pyproject.toml` and the link at the bottom of
+this file if your handle differs.
 
 ---
 

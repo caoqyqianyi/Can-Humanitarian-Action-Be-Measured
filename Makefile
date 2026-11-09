@@ -1,4 +1,4 @@
-.PHONY: setup validate audit test brief clean
+.PHONY: setup validate audit test brief pages clean
 
 PY ?= python3
 
@@ -19,6 +19,10 @@ test:
 
 brief: audit
 	@echo "open output/brief.html"
+
+pages: audit
+	cp output/brief.html docs/index.html
+	@echo "docs/index.html ready — enable Pages on main /docs"
 
 clean:
 	rm -rf output/scorecard.csv output/assessments.json output/brief.html output/powerbi
