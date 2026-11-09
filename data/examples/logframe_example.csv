@@ -1,0 +1,18 @@
+# Illustrative results framework — synthetic, not a real proposal.
+# Written to exercise the audit across the full range of failure modes:
+# a well-sourced indicator, several conditionals, two dead ends and one
+# indicator with no registry equivalent at all.
+result_level,indicator_text,unit,geography,disaggregation,frequency,baseline_year,publication
+Outcome,Share of targeted households with adequate food consumption (FCS),percent,Somalia,"sex, geography",quarterly,2019,public
+Output,Number of people reached with emergency cash assistance,persons,Somalia,"sex, age, disability",monthly,2020,public
+Output,Total population in target districts by year,persons,Somalia,none,annual,2020,public
+Outcome,Number of people living in areas exposed to 1-in-100-year river flooding,persons,Bangladesh,none,annual,2020,public
+Outcome,Days between early-warning trigger and first disbursement,days,Somalia,none,per activation,2020,public
+Output,Percentage of response delivered through local partners,percent,Somalia,partner_type,quarterly,2020,public
+Outcome,Number of people displaced by conflict in the target governorate,persons,Yemen,"sex, age",quarterly,2020,public
+Outcome,Crop yield anomaly against the five-year average,percent,Ethiopia,crop,seasonal,2020,public
+Output,Number of access constraint incidents affecting humanitarian delivery,incidents,Yemen,incident_type,monthly,2020,public
+Outcome,Reduction in prevalence of global acute malnutrition (GAM),percent,Yemen,"sex, age",monthly,2019,public
+Output,Number of beneficiaries with disability status recorded,persons,Chad,disability,quarterly,2020,public
+Outcome,Percentage of women among decision-makers in partner organisations,percent,Somalia,sex,annual,2020,public
+Output,Number of community feedback mechanisms established and functional,count,Somalia,none,quarterly,2020,internal

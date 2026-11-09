@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this tool or the audit method, please cite it as below."
+title: "aadesk: the anticipatory action data desk"
+abstract: >
+  A reproducibility toolkit that audits humanitarian results frameworks for
+  indicator monitorability, builds population denominators from the ISIMIP
+  portal hosted by IIASA with checksum verification, and gates outputs at the
+  disclosure level they can safely carry.
+version: 0.1.0
+date-released: 2026-11-09
+authors:
+  - family-names: "Cao"
+    given-names: "Qianyi"
+license: MIT
+repository-code: "https://github.com/qianyi/aa-data-desk"
+keywords:
+  - humanitarian action
+  - anticipatory action
+  - indicators
+  - results frameworks
+  - ISIMIP
+  - IIASA
+  - data quality
+  - disclosure control
+references:
+  - type: dataset
+    title: "ISIMIP2a input data — HYDE national population, annual 1901-2020"
+    repository: "ISIMIP data portal (hosted by IIASA)"
+    url: "https://data.isimip.org"
+    notes: "Version 20210526; CC BY 4.0; SHA-512 verified at retrieval."

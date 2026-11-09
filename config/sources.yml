@@ -1,0 +1,78 @@
+# Source catalogue
+# ----------------
+# Custodians referenced by the indicator registry. Kept separate from the
+# registry so that one source can back several indicators, and so that access
+# conditions and licences are stated once.
+
+version: "1.0"
+
+sources:
+  isimip-hyde-pop:
+    title: ISIMIP2a input data — HYDE national population
+    custodian: ISIMIP data portal (hosted by IIASA); methodology HYDE (PBL)
+    url: https://data.isimip.org
+    access: open
+    licence: CC BY 4.0 (verified at retrieval, 2026-11-09)
+    api: https://data.isimip.org/api/v1/
+    note: >
+      The only source in this registry that the pipeline consumes directly.
+      Retrieved through aadesk.iiasa with checksum verification against the
+      SHA-512 published by the API.
+
+  isimip-flood:
+    title: ISIMIP CaMa-Flood derived output — flood depth, 100-year return period
+    custodian: ISIMIP data portal (hosted by IIASA)
+    url: https://data.isimip.org
+    access: open
+    api: https://data.isimip.org/api/v1/
+    note: Gridded 300 arcsec; requires an administrative boundary raster to become national.
+
+  isimip-crop:
+    title: ISIMIP gridded crop model output
+    custodian: ISIMIP data portal (hosted by IIASA)
+    url: https://data.isimip.org
+    access: open
+    api: https://data.isimip.org/api/v1/
+
+  wfp-vam:
+    title: WFP Vulnerability Analysis and Mapping
+    custodian: World Food Programme
+    url: https://dataviz.vam.wfp.org
+    access: open with registration
+
+  idmc:
+    title: IDMC Global Internal Displacement Database
+    custodian: Internal Displacement Monitoring Centre / NRC
+    url: https://www.internal-displacement.org/database/displacement-data
+    access: open
+
+  acaps:
+    title: ACAPS humanitarian access analysis
+    custodian: ACAPS
+    url: https://www.acaps.org
+    access: open with registration
+
+  programme-mis: &internal_mis
+    title: Programme management information system
+    custodian: Implementing organisation
+    url: ""
+    access: restricted
+    note: >
+      Internal systems. Any output derived from them is subject to the
+      disclosure rules in docs/data-protection.md; aggregate counts only,
+      never individual records.
+
+  aa-activation-log: *internal_mis
+  partnership-records: *internal_mis
+
+  smart-survey:
+    title: SMART nutrition surveys; UNICEF-WHO-UNHCR joint malnutrition estimates
+    custodian: Survey agency / UNICEF
+    url: https://data.unicef.org/topic/nutrition/malnutrition/
+    access: mixed
+
+  none:
+    title: No source identified
+    custodian: ""
+    url: ""
+    access: none

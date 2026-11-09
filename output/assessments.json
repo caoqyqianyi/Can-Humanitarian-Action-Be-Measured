@@ -1,0 +1,513 @@
+{
+  "summary": {
+    "total": 13,
+    "monitorable": 1,
+    "conditional": 9,
+    "not_monitorable": 2,
+    "unmatched": 1,
+    "monitorable_share": 0.077,
+    "share_at_risk": 0.231
+  },
+  "assessments": [
+    {
+      "indicator_text": "Share of targeted households with adequate food consumption (FCS)",
+      "result_level": "Outcome",
+      "unit": "percent",
+      "geography": "Somalia",
+      "baseline_year": 2019,
+      "publication": "public",
+      "matched_id": "FS-FCS",
+      "matched_name": "Share of households with adequate food consumption (FCS)",
+      "match_score": 1.0,
+      "status": "conditional",
+      "checks": [
+        {
+          "name": "availability",
+          "status": "warn",
+          "detail": "source exists but needs preparation (World Food Programme (VAM))"
+        },
+        {
+          "name": "disaggregation",
+          "status": "warn",
+          "detail": "source supports displacement_status, geography, sex_of_head; promised sex is not available"
+        },
+        {
+          "name": "cadence",
+          "status": "pass",
+          "detail": "source cadence quarterly covers quarterly"
+        },
+        {
+          "name": "geography",
+          "status": "pass",
+          "detail": "Somalia covered; baseline 2019 = 15,636,171 people"
+        },
+        {
+          "name": "disclosure",
+          "status": "pass",
+          "detail": "'public' output fits a 'public' product"
+        }
+      ],
+      "summary": "Reportable only with a stated caveat: source exists but needs preparation (World Food Programme (VAM)); source supports displacement_status, geography, sex_of_head; promised sex is not available"
+    },
+    {
+      "indicator_text": "Number of people reached with emergency cash assistance",
+      "result_level": "Output",
+      "unit": "persons",
+      "geography": "Somalia",
+      "baseline_year": 2020,
+      "publication": "public",
+      "matched_id": "FS-CASH-REACH",
+      "matched_name": "People reached with emergency cash assistance",
+      "match_score": 1.0,
+      "status": "conditional",
+      "checks": [
+        {
+          "name": "availability",
+          "status": "warn",
+          "detail": "source exists but needs preparation (Implementing organisation)"
+        },
+        {
+          "name": "disaggregation",
+          "status": "pass",
+          "detail": "supports age_group, disability, sex"
+        },
+        {
+          "name": "cadence",
+          "status": "pass",
+          "detail": "source cadence monthly covers monthly"
+        },
+        {
+          "name": "geography",
+          "status": "pass",
+          "detail": "Somalia covered; baseline 2020 = 16,105,174 people"
+        },
+        {
+          "name": "disclosure",
+          "status": "warn",
+          "detail": "source is 'internal'; only reviewed aggregate figures may be published"
+        }
+      ],
+      "summary": "Reportable only with a stated caveat: source exists but needs preparation (Implementing organisation); source is 'internal'; only reviewed aggregate figures may be published"
+    },
+    {
+      "indicator_text": "Total population in target districts by year",
+      "result_level": "Output",
+      "unit": "persons",
+      "geography": "Somalia",
+      "baseline_year": 2020,
+      "publication": "public",
+      "matched_id": "POP-DENOM",
+      "matched_name": "National population denominator",
+      "match_score": 0.59,
+      "status": "monitorable",
+      "checks": [
+        {
+          "name": "availability",
+          "status": "pass",
+          "detail": "open source exists (ISIMIP data portal (hosted by IIASA); methodology HYDE (PBL))"
+        },
+        {
+          "name": "disaggregation",
+          "status": "pass",
+          "detail": "no disaggregation promised"
+        },
+        {
+          "name": "cadence",
+          "status": "pass",
+          "detail": "source cadence annual covers annual"
+        },
+        {
+          "name": "geography",
+          "status": "pass",
+          "detail": "Somalia covered; baseline 2020 = 16,105,174 people"
+        },
+        {
+          "name": "disclosure",
+          "status": "pass",
+          "detail": "'public' output fits a 'public' product"
+        }
+      ],
+      "summary": "Backed by ISIMIP2a input data \u2014 HYDE national population, annual 1901\u20132020."
+    },
+    {
+      "indicator_text": "Number of people living in areas exposed to 1-in-100-year river flooding",
+      "result_level": "Outcome",
+      "unit": "persons",
+      "geography": "Bangladesh",
+      "baseline_year": 2020,
+      "publication": "public",
+      "matched_id": "HAZ-FLOOD-EXPO",
+      "matched_name": "Population in areas exposed to 1-in-100-year river flooding",
+      "match_score": 1.0,
+      "status": "conditional",
+      "checks": [
+        {
+          "name": "availability",
+          "status": "warn",
+          "detail": "source exists but needs preparation (ISIMIP data portal (hosted by IIASA))"
+        },
+        {
+          "name": "disaggregation",
+          "status": "pass",
+          "detail": "no disaggregation promised"
+        },
+        {
+          "name": "cadence",
+          "status": "pass",
+          "detail": "source cadence annual covers annual"
+        },
+        {
+          "name": "geography",
+          "status": "pass",
+          "detail": "Bangladesh covered; baseline 2020 = 169,775,309 people"
+        },
+        {
+          "name": "disclosure",
+          "status": "pass",
+          "detail": "'public' output fits a 'public' product"
+        }
+      ],
+      "summary": "Reportable only with a stated caveat: source exists but needs preparation (ISIMIP data portal (hosted by IIASA))"
+    },
+    {
+      "indicator_text": "Days between early-warning trigger and first disbursement",
+      "result_level": "Outcome",
+      "unit": "days",
+      "geography": "Somalia",
+      "baseline_year": 2020,
+      "publication": "public",
+      "matched_id": "AA-TRIGGER-LATENCY",
+      "matched_name": "Days between anticipatory action trigger and first disbursement",
+      "match_score": 1.0,
+      "status": "conditional",
+      "checks": [
+        {
+          "name": "availability",
+          "status": "warn",
+          "detail": "source exists but needs preparation (Implementing organisation)"
+        },
+        {
+          "name": "disaggregation",
+          "status": "pass",
+          "detail": "no disaggregation promised"
+        },
+        {
+          "name": "cadence",
+          "status": "pass",
+          "detail": "source cadence per activation covers per activation"
+        },
+        {
+          "name": "geography",
+          "status": "pass",
+          "detail": "Somalia covered; baseline 2020 = 16,105,174 people"
+        },
+        {
+          "name": "disclosure",
+          "status": "warn",
+          "detail": "source is 'internal'; only reviewed aggregate figures may be published"
+        }
+      ],
+      "summary": "Reportable only with a stated caveat: source exists but needs preparation (Implementing organisation); source is 'internal'; only reviewed aggregate figures may be published"
+    },
+    {
+      "indicator_text": "Percentage of response delivered through local partners",
+      "result_level": "Output",
+      "unit": "percent",
+      "geography": "Somalia",
+      "baseline_year": 2020,
+      "publication": "public",
+      "matched_id": "LOC-PARTNER-SHARE",
+      "matched_name": "Share of response delivered through local partners",
+      "match_score": 1.0,
+      "status": "conditional",
+      "checks": [
+        {
+          "name": "availability",
+          "status": "warn",
+          "detail": "source exists but needs preparation (Implementing organisation)"
+        },
+        {
+          "name": "disaggregation",
+          "status": "pass",
+          "detail": "supports partner_type"
+        },
+        {
+          "name": "cadence",
+          "status": "pass",
+          "detail": "source cadence quarterly covers quarterly"
+        },
+        {
+          "name": "geography",
+          "status": "pass",
+          "detail": "Somalia covered; baseline 2020 = 16,105,174 people"
+        },
+        {
+          "name": "disclosure",
+          "status": "warn",
+          "detail": "source is 'internal'; only reviewed aggregate figures may be published"
+        }
+      ],
+      "summary": "Reportable only with a stated caveat: source exists but needs preparation (Implementing organisation); source is 'internal'; only reviewed aggregate figures may be published"
+    },
+    {
+      "indicator_text": "Number of people displaced by conflict in the target governorate",
+      "result_level": "Outcome",
+      "unit": "persons",
+      "geography": "Yemen",
+      "baseline_year": 2020,
+      "publication": "public",
+      "matched_id": "PROT-DISPLACED",
+      "matched_name": "People internally displaced by conflict and violence",
+      "match_score": 0.705,
+      "status": "conditional",
+      "checks": [
+        {
+          "name": "availability",
+          "status": "warn",
+          "detail": "source exists but needs preparation (IDMC / Norwegian Refugee Council)"
+        },
+        {
+          "name": "disaggregation",
+          "status": "pass",
+          "detail": "supports age_group, sex"
+        },
+        {
+          "name": "cadence",
+          "status": "warn",
+          "detail": "promised quarterly; source runs annual \u2014 values will be carried forward, not measured"
+        },
+        {
+          "name": "geography",
+          "status": "pass",
+          "detail": "Yemen covered; baseline 2020 = 30,245,305 people"
+        },
+        {
+          "name": "disclosure",
+          "status": "pass",
+          "detail": "'public' output fits a 'public' product"
+        }
+      ],
+      "summary": "Reportable only with a stated caveat: source exists but needs preparation (IDMC / Norwegian Refugee Council); promised quarterly; source runs annual \u2014 values will be carried forward, not measured"
+    },
+    {
+      "indicator_text": "Crop yield anomaly against the five-year average",
+      "result_level": "Outcome",
+      "unit": "percent",
+      "geography": "Ethiopia",
+      "baseline_year": 2020,
+      "publication": "public",
+      "matched_id": "AG-YIELD-ANOMALY",
+      "matched_name": "Crop yield anomaly against the five-year average",
+      "match_score": 1.0,
+      "status": "conditional",
+      "checks": [
+        {
+          "name": "availability",
+          "status": "warn",
+          "detail": "source exists but needs preparation (ISIMIP data portal (hosted by IIASA))"
+        },
+        {
+          "name": "disaggregation",
+          "status": "pass",
+          "detail": "supports crop"
+        },
+        {
+          "name": "cadence",
+          "status": "pass",
+          "detail": "source cadence seasonal covers seasonal"
+        },
+        {
+          "name": "geography",
+          "status": "pass",
+          "detail": "Ethiopia covered; baseline 2020 = 112,759,070 people"
+        },
+        {
+          "name": "disclosure",
+          "status": "pass",
+          "detail": "'public' output fits a 'public' product"
+        }
+      ],
+      "summary": "Reportable only with a stated caveat: source exists but needs preparation (ISIMIP data portal (hosted by IIASA))"
+    },
+    {
+      "indicator_text": "Number of access constraint incidents affecting humanitarian delivery",
+      "result_level": "Output",
+      "unit": "incidents",
+      "geography": "Yemen",
+      "baseline_year": 2020,
+      "publication": "public",
+      "matched_id": "PROT-ACCESS",
+      "matched_name": "Access constraint incidents affecting humanitarian delivery",
+      "match_score": 1.0,
+      "status": "conditional",
+      "checks": [
+        {
+          "name": "availability",
+          "status": "warn",
+          "detail": "source exists but needs preparation (ACAPS)"
+        },
+        {
+          "name": "disaggregation",
+          "status": "pass",
+          "detail": "supports geography, incident_type"
+        },
+        {
+          "name": "cadence",
+          "status": "pass",
+          "detail": "source cadence monthly covers monthly"
+        },
+        {
+          "name": "geography",
+          "status": "pass",
+          "detail": "Yemen covered; baseline 2020 = 30,245,305 people"
+        },
+        {
+          "name": "disclosure",
+          "status": "warn",
+          "detail": "source is 'internal'; only reviewed aggregate figures may be published"
+        }
+      ],
+      "summary": "Reportable only with a stated caveat: source exists but needs preparation (ACAPS); source is 'internal'; only reviewed aggregate figures may be published"
+    },
+    {
+      "indicator_text": "Reduction in prevalence of global acute malnutrition (GAM)",
+      "result_level": "Outcome",
+      "unit": "percent",
+      "geography": "Yemen",
+      "baseline_year": 2019,
+      "publication": "public",
+      "matched_id": "NUT-GAM",
+      "matched_name": "Prevalence of global acute malnutrition (GAM)",
+      "match_score": 1.0,
+      "status": "conditional",
+      "checks": [
+        {
+          "name": "availability",
+          "status": "warn",
+          "detail": "source exists but needs preparation (Survey implementing agency; UNICEF for global estimates)"
+        },
+        {
+          "name": "disaggregation",
+          "status": "pass",
+          "detail": "supports age_group, sex"
+        },
+        {
+          "name": "cadence",
+          "status": "warn",
+          "detail": "promised monthly; source runs biennial \u2014 values will be carried forward, not measured"
+        },
+        {
+          "name": "geography",
+          "status": "pass",
+          "detail": "Yemen covered; baseline 2019 = 29,579,986 people"
+        },
+        {
+          "name": "disclosure",
+          "status": "pass",
+          "detail": "'public' output fits a 'public' product"
+        }
+      ],
+      "summary": "Reportable only with a stated caveat: source exists but needs preparation (Survey implementing agency; UNICEF for global estimates); promised monthly; source runs biennial \u2014 values will be carried forward, not measured"
+    },
+    {
+      "indicator_text": "Number of beneficiaries with disability status recorded",
+      "result_level": "Output",
+      "unit": "persons",
+      "geography": "Chad",
+      "baseline_year": 2020,
+      "publication": "public",
+      "matched_id": "IM-DISABILITY",
+      "matched_name": "Share of assisted people with disability recorded",
+      "match_score": 1.0,
+      "status": "not monitorable",
+      "checks": [
+        {
+          "name": "availability",
+          "status": "fail",
+          "detail": "no consistent data source identified across the portfolio"
+        },
+        {
+          "name": "disaggregation",
+          "status": "pass",
+          "detail": "supports age_group, disability, sex"
+        },
+        {
+          "name": "cadence",
+          "status": "pass",
+          "detail": "source cadence quarterly covers quarterly"
+        },
+        {
+          "name": "geography",
+          "status": "pass",
+          "detail": "Chad covered; baseline 2020 = 16,285,093 people"
+        },
+        {
+          "name": "disclosure",
+          "status": "warn",
+          "detail": "source is 'internal'; only reviewed aggregate figures may be published"
+        }
+      ],
+      "summary": "Registration forms frequently omit the Washington Group questions, so the denominator (people with a recorded disability status) is itself unknown. This is the registry's worked example of an indicator that cannot be monitored without first changing the data collection instrument."
+    },
+    {
+      "indicator_text": "Percentage of women among decision-makers in partner organisations",
+      "result_level": "Outcome",
+      "unit": "percent",
+      "geography": "Somalia",
+      "baseline_year": 2020,
+      "publication": "public",
+      "matched_id": "GEN-DECISION",
+      "matched_name": "Share of women in partner decision-making positions",
+      "match_score": 0.958,
+      "status": "not monitorable",
+      "checks": [
+        {
+          "name": "availability",
+          "status": "fail",
+          "detail": "no consistent data source identified across the portfolio"
+        },
+        {
+          "name": "disaggregation",
+          "status": "pass",
+          "detail": "supports sex"
+        },
+        {
+          "name": "cadence",
+          "status": "pass",
+          "detail": "source cadence annual covers annual"
+        },
+        {
+          "name": "geography",
+          "status": "pass",
+          "detail": "Somalia covered; baseline 2020 = 16,105,174 people"
+        },
+        {
+          "name": "disclosure",
+          "status": "warn",
+          "detail": "source is 'internal'; only reviewed aggregate figures may be published"
+        }
+      ],
+      "summary": "Requires partner HR data that is rarely shared and is personal in nature. Included to show that a plausible-sounding indicator can have no monitorable data trail at all."
+    },
+    {
+      "indicator_text": "Number of community feedback mechanisms established and functional",
+      "result_level": "Output",
+      "unit": "count",
+      "geography": "Somalia",
+      "baseline_year": 2020,
+      "publication": "internal",
+      "matched_id": "",
+      "matched_name": "",
+      "match_score": 0.09,
+      "status": "unmatched",
+      "checks": [
+        {
+          "name": "match",
+          "status": "fail",
+          "detail": "best score 0.09 below threshold 0.45"
+        }
+      ],
+      "summary": "No registry entry is close enough; the indicator has no identified data trail. Either reword it towards an existing source, or budget for a primary collection instrument."
+    }
+  ]
+}

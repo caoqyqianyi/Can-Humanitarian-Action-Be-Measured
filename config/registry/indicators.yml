@@ -1,0 +1,407 @@
+# Indicator registry
+# ------------------
+# A deliberately small, hand-curated registry of humanitarian indicators.
+#
+# The registry answers one question that proposal-writing usually defers:
+# "if we commit to this indicator, does the data actually exist, at the
+#  geography, frequency and disaggregation we are promising, and can we
+#  publish it?"
+#
+# `availability` is an assessment of the *public data landscape*, not of this
+# repository: available = an open, documented source exists and is usable as-is;
+# partial = a source exists but needs a join, a survey, or a partner agreement;
+# unavailable = no credible source identified.
+#
+# `disclosure` is the highest classification an output derived from this
+# indicator may carry. See docs/data-protection.md.
+
+version: "1.0"
+updated: "2026-11-09"
+
+indicators:
+  - id: POP-DENOM
+    name: National population denominator
+    definition: >
+      Total resident population of a country for a given calendar year, in persons.
+      Used as the denominator for per-capita and "share of population" indicators.
+    unit: persons
+    geography: national
+    frequency: annual
+    disaggregation: [none]
+    baseline: supported
+    availability: available
+    source:
+      id: isimip-hyde-pop
+      title: ISIMIP2a input data — HYDE national population, annual 1901–2020
+      custodian: ISIMIP data portal (hosted by IIASA); methodology HYDE (PBL)
+      url: https://data.isimip.org
+      access: open
+      licence: CC BY 4.0 — Attribution 4.0 International (verified at retrieval)
+      coverage: 238 national units, 1901–2020, annual
+    computed_by: aadesk.denominators
+    disclosure: public
+    note: >
+      Ships with this repository as a checksum-verified extract
+      (data/reference/isimip_hyde_national_population_1901_2020.csv, SHA-512
+      compared against the value published by the ISIMIP API).
+    keywords:
+      - population
+      - total population
+      - denominator
+      - residents
+      - inhabitants
+      - beneficiary base
+      - catchment population
+
+  - id: HAZ-FLOOD-EXPO
+    name: Population in areas exposed to 1-in-100-year river flooding
+    definition: >
+      Number of people resident in grid cells where modelled 100-year return-period
+      flood depth exceeds a defined threshold (default 0.5 m).
+    unit: persons
+    geography: grid; national after administrative aggregation
+    frequency: annual / scenario-based
+    disaggregation: [none]
+    baseline: partial
+    availability: partial
+    source:
+      id: isimip-flood
+      title: ISIMIP CaMa-Flood derived output — flddph 100yr, 300 arcsec, annual
+      custodian: ISIMIP data portal (hosted by IIASA)
+      url: https://data.isimip.org
+      access: open
+      licence: Dataset rights as published per dataset (several CC0 1.0)
+      coverage: global gridded, multiple forcing/impact-model combinations
+    disclosure: public
+    note: >
+      The hazard layer is open and verified in the catalogue; turning it into a
+      national indicator requires an administrative boundary raster that the
+      pipeline does not yet ship (see docs/limitations.md). Treat as
+      "computable with one further join", not "reportable today".
+    keywords:
+      - flood
+      - flooding
+      - exposed to flooding
+      - flood-prone
+      - riverine
+      - 100-year
+      - return period
+      - hazard exposure
+
+  - id: FS-FCS
+    name: Share of households with adequate food consumption (FCS)
+    definition: >
+      Percentage of surveyed households with a Food Consumption Score above the
+      country-specific adequacy threshold.
+    unit: percent
+    geography: sub-national; national
+    frequency: quarterly to annual (survey-driven)
+    disaggregation: [sex_of_head, geography, displacement_status]
+    baseline: partial
+    availability: partial
+    source:
+      id: wfp-vam
+      title: WFP Vulnerability Analysis and Mapping (VAM) food security assessments
+      custodian: World Food Programme (VAM)
+      url: https://dataviz.vam.wfp.org
+      access: open with registration
+      licence: WFP data terms; some assessments restricted per partner agreement
+      coverage: country assessments, irregular in time
+    disclosure: public
+    note: >
+      Requires a primary survey; frequency is governed by assessment rounds, not
+      by the reporting calendar. Expectations of monthly values cannot be met.
+    keywords:
+      - food consumption score
+      - fcs
+      - adequate food consumption
+      - food security
+      - hunger
+      - dietary
+
+  - id: FS-CASH-REACH
+    name: People reached with emergency cash assistance
+    definition: >
+      Unique individuals receiving at least one cash transfer within the reporting
+      period, counted once per period.
+    unit: persons
+    geography: programme area
+    frequency: monthly
+    disaggregation: [sex, age_group, disability]
+    baseline: supported
+    availability: partial
+    source:
+      id: programme-mis
+      title: Programme management information system / distribution records
+      custodian: Implementing organisation
+      url: ""
+      access: restricted
+      licence: Internal; personal data under data-protection policy
+      coverage: programme areas, monthly
+    disclosure: internal
+    note: >
+      Reliable internally, but not publishable at individual level. Aggregated
+      counts are publishable after disclosure review (see aadesk.disclosure).
+    keywords:
+      - people reached
+      - cash assistance
+      - cash transfer
+      - beneficiaries
+      - mpca
+      - multipurpose cash
+      - reached with
+
+  - id: AA-TRIGGER-LATENCY
+    name: Days between anticipatory action trigger and first disbursement
+    definition: >
+      Elapsed calendar days from the moment a pre-agreed trigger threshold is met
+      to the first payment reaching implementing partners.
+    unit: days
+    geography: country / programme
+    frequency: per activation
+    disaggregation: [none]
+    baseline: partial
+    availability: partial
+    source:
+      id: aa-activation-log
+      title: Anticipatory action activation log / emergency response records
+      custodian: Implementing organisation
+      url: ""
+      access: restricted
+      licence: Internal
+      coverage: only where a pre-agreed trigger framework exists
+    disclosure: internal
+    note: >
+      Monitorable only where triggers are pre-agreed and activation dates are
+      logged. Without a pre-agreed threshold the indicator has no denominator.
+    keywords:
+      - trigger
+      - disbursement
+      - days between
+      - early warning
+      - lead time
+      - anticipatory
+      - activation
+
+  - id: LOC-PARTNER-SHARE
+    name: Share of response delivered through local partners
+    definition: >
+      Proportion of response value (financial or activity volume) delivered by
+      national and local partners, as a percentage of total response value.
+    unit: percent
+    geography: country / programme
+    frequency: quarterly
+    disaggregation: [partner_type]
+    baseline: partial
+    availability: partial
+    source:
+      id: partnership-records
+      title: Partner agreements and financial reporting
+      custodian: Implementing organisation
+      url: ""
+      access: restricted
+      licence: Internal
+      coverage: programme level
+    disclosure: internal
+    note: >
+      Definition-sensitive: "local" must be fixed (national NGO, local authority,
+      community organisation) before any baseline can be computed, otherwise the
+      indicator moves when the definition moves.
+    keywords:
+      - local partner
+      - localisation
+      - localization
+      - national partner
+      - delivered through
+      - partnership
+
+  - id: PROT-DISPLACED
+    name: People internally displaced by conflict and violence
+    definition: >
+      Number of persons internally displaced by conflict and violence in the
+      reporting geography, stock or new displacement as explicitly stated.
+    unit: persons
+    geography: national; sub-national where published
+    frequency: annual (stock); ad hoc (events)
+    disaggregation: [sex, age_group]
+    baseline: partial
+    availability: partial
+    source:
+      id: idmc
+      title: Internal Displacement Monitoring Centre (IDMC) global displacement database
+      custodian: IDMC / Norwegian Refugee Council
+      url: https://www.internal-displacement.org/database/displacement-data
+      access: open
+      licence: IDMC terms of use, attribution required
+      coverage: national, annual, with publication lag
+    disclosure: public
+    note: >
+      Stock and flow are different indicators and are frequently conflated in
+      proposals. Publication lag of up to a year means the reporting period and
+      the data period will not match.
+    keywords:
+      - displaced
+      - displacement
+      - idp
+      - internally displaced
+      - conflict displacement
+
+  - id: PROT-ACCESS
+    name: Access constraint incidents affecting humanitarian delivery
+    definition: >
+      Count of recorded incidents restricting humanitarian access (denial of
+      passage, bureaucratic impediment, violence against aid workers) in the
+      reporting geography and period.
+    unit: incidents
+    geography: national; sub-national
+    frequency: monthly
+    disaggregation: [incident_type, geography]
+    baseline: partial
+    availability: partial
+    source:
+      id: acaps
+      title: ACAPS humanitarian access analysis
+      custodian: ACAPS
+      url: https://www.acaps.org
+      access: open with registration
+      licence: ACAPS terms; commercial reuse restricted
+      coverage: selected crisis contexts, monthly
+    disclosure: internal
+    note: >
+      Incident data is sensitive: naming actors or locations can endanger staff
+      and partners. Aggregate only, with a disclosure review before external use.
+    keywords:
+      - access constraint
+      - access incident
+      - denial of access
+      - humanitarian access
+      - impediment
+
+  - id: AG-YIELD-ANOMALY
+    name: Crop yield anomaly against the five-year average
+    definition: >
+      Percentage deviation of modelled or observed crop yield from the preceding
+      five-year mean, for the reporting geography and season.
+    unit: percent
+    geography: grid; national after administrative aggregation
+    frequency: seasonal
+    disaggregation: [crop]
+    baseline: partial
+    availability: partial
+    source:
+      id: isimip-crop
+      title: ISIMIP gridded crop model output (crop yield variables)
+      custodian: ISIMIP data portal (hosted by IIASA)
+      url: https://data.isimip.org
+      access: open
+      licence: Dataset rights as published per dataset
+      coverage: global gridded, seasonal to annual
+    disclosure: public
+    note: >
+      Same administrative-aggregation constraint as the flood indicator.
+      Model spread between impact models is wide; a single-model anomaly is not
+      a trigger-grade signal.
+    keywords:
+      - crop yield
+      - yield anomaly
+      - harvest
+      - production shortfall
+      - maize
+      - wheat
+
+  - id: NUT-GAM
+    name: Prevalence of global acute malnutrition (GAM)
+    definition: >
+      Percentage of children 6–59 months with weight-for-height z-score below
+      -2 or MUAC below 125 mm, from a standardised survey.
+    unit: percent
+    geography: sub-national; national
+    frequency: annual to biennial (survey-driven)
+    disaggregation: [sex, age_group]
+    baseline: partial
+    availability: partial
+    source:
+      id: smart-survey
+      title: SMART / nutrition surveillance surveys; UNICEF-WHO-UNHCR joint estimates
+      custodian: Survey implementing agency; UNICEF for global estimates
+      url: https://data.unicef.org/topic/nutrition/malnutrition/
+      access: open (global estimates); restricted (raw survey)
+      licence: Survey-specific ethics approval
+      coverage: survey rounds, not continuous
+    disclosure: public
+    note: >
+      A prevalence indicator cannot be reported monthly. Any logframe promising
+      monthly GAM values is promising data that will not exist.
+    keywords:
+      - acute malnutrition
+      - gam
+      - wasting
+      - nutrition
+      - muac
+      - anthropometric
+
+  - id: IM-DISABILITY
+    name: Share of assisted people with disability recorded
+    definition: >
+      Percentage of assisted individuals whose disability status is recorded using
+      the Washington Group short set of questions.
+    unit: percent
+    geography: programme area
+    frequency: quarterly
+    disaggregation: [disability, sex, age_group]
+    baseline: none
+    availability: unavailable
+    source:
+      id: none
+      title: No consistent source identified across programmes
+      custodian: ""
+      url: ""
+      access: restricted
+      licence: ""
+      coverage: ""
+    disclosure: internal
+    note: >
+      Registration forms frequently omit the Washington Group questions, so the
+      denominator (people with a recorded disability status) is itself unknown.
+      This is the registry's worked example of an indicator that cannot be
+      monitored without first changing the data collection instrument.
+    keywords:
+      - disability
+      - disability status recorded
+      - disability status
+      - beneficiaries with disability
+      - washington group
+      - persons with disabilities
+      - accessibility
+
+  - id: GEN-DECISION
+    name: Share of women in partner decision-making positions
+    definition: >
+      Percentage of women among named decision-making roles (director, board,
+      senior management) in partner organisations.
+    unit: percent
+    geography: partner organisation
+    frequency: annual
+    disaggregation: [sex]
+    baseline: none
+    availability: unavailable
+    source:
+      id: none
+      title: No registry source; would require a partner HR data request
+      custodian: ""
+      url: ""
+      access: restricted
+      licence: ""
+      coverage: ""
+    disclosure: internal
+    note: >
+      Requires partner HR data that is rarely shared and is personal in nature.
+      Included to show that a plausible-sounding indicator can have no
+      monitorable data trail at all.
+    keywords:
+      - women in decision
+      - decision makers
+      - decision-making
+      - leadership
+      - gender parity
+      - board
