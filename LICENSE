@@ -31,3 +31,8 @@ published under CC BY 4.0 (Attribution 4.0 International). Attribution to
 ISIMIP / IIASA and to the HYDE methodology is required, and dataset rights
 should be re-checked at the portal before reuse. The SHA-512 digest recorded
 in data/reference/PROVENANCE.md identifies the exact version used here.
+
+The boundary geometry in data/reference/ne_110m_admin0_world.json is derived
+from Natural Earth (naturalearthdata.com), which is in the public domain:
+no attribution is required, though it is good practice and is given here.
+It is a cartographic layer, not an authoritative boundary representation.

@@ -21,6 +21,10 @@ OUTPUT_DIR = ROOT / "output"
 
 POPULATION_REFERENCE = REFERENCE_DIR / "isimip_hyde_national_population_1901_2020.csv"
 
+# Natural Earth 110m admin-0, outer rings only, rounded to 0.1 degree. Public
+# domain; kept in the repository so the brief can be drawn with no network.
+BOUNDARY_FILE = REFERENCE_DIR / "ne_110m_admin0_world.json"
+
 
 def load_yaml(path: Path | str) -> dict:
     with open(path, "r", encoding="utf-8") as handle:

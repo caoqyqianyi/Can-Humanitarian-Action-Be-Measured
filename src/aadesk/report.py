@@ -17,6 +17,7 @@ import pandas as pd
 from .config import ensure_dir
 from .denominators import Denominators, format_persons
 from .disclosure import gate
+from .mapview import coverage, render_choropleth
 from .rfcheck import Assessment
 
 INK = "#14211d"
@@ -95,8 +96,8 @@ def _line_chart(series: dict[str, pd.DataFrame], width: int = 960, height: int =
         color = SERIES[index % len(SERIES)]
         points = " ".join(f'{x_of(int(row.year)):.1f},{y_of(float(row.value)):.1f}'
                           for row in frame.itertuples())
-        parts.append(f'<polyline points="{points}" fill="none" stroke="{color}" '
-                     f'stroke-width="2.2" stroke-linejoin="round"/>')
+        parts.append(f'<polyline id="series-{index}" data-i="{index}" points="{points}" '
+                     f'fill="none" stroke="{color}" stroke-width="2.2" stroke-linejoin="round"/>')
         last = frame.iloc[-1]
         parts.append(f'<circle cx="{x_of(int(last.year)):.1f}" '
                      f'cy="{y_of(float(last.value)):.1f}" r="3.4" fill="{color}"/>')
@@ -104,10 +105,12 @@ def _line_chart(series: dict[str, pd.DataFrame], width: int = 960, height: int =
     parts.append("</svg>")
 
     legend = "".join(
-        f'<span class="legend"><i style="background:{SERIES[i % len(SERIES)]}"></i>'
-        f'{_esc(label)}</span>'
+        f'<span class="legend" data-i="{i}" onclick="aadeskSeries(this)" '
+        f'role="button" tabindex="0" title="Toggle this series">'
+        f'<i style="background:{SERIES[i % len(SERIES)]}"></i>{_esc(label)}</span>'
         for i, label in enumerate(frames))
-    return f'<div class="chart-wrap">{"".join(parts)}<div class="legend-row">{legend}</div></div>'
+    return (f'<div class="chart-wrap">{"".join(parts)}'
+            f'<div class="legend-row">{legend}</div></div>')
 
 
 def _pills(assessment: Assessment) -> str:
@@ -150,6 +153,22 @@ def build_brief(assessments: list[Assessment], denominators: Denominators,
             series[resolved or country] = frame
 
     chart = _line_chart(series) if series else "<p class='muted'>No country resolvable.</p>"
+    map_html = render_choropleth(denominators, countries) if countries else ""
+    covered, drawn = coverage(denominators)
+    series_start, series_end = 1960, denominators.year_range[1]
+
+    chips = (
+        '<div class="chips">'
+        f'<button class="chip is-on" data-f="all" onclick="aadeskFilter(\'all\')">'
+        f'All {total}</button>'
+        f'<button class="chip" data-f="monitorable" onclick="aadeskFilter(\'monitorable\')">'
+        f'Monitorable {ok}</button>'
+        f'<button class="chip" data-f="conditional" onclick="aadeskFilter(\'conditional\')">'
+        f'Conditional {caution}</button>'
+        f'<button class="chip" data-f="none" onclick="aadeskFilter(\'none\')">'
+        f'No data trail {blocked}</button>'
+        '</div>'
+    )
 
     # Denominator drift table.
     drift_rows = ""
@@ -196,7 +215,7 @@ def build_brief(assessments: list[Assessment], denominators: Denominators,
     rows = ""
     for assessment in assessments:
         rows += (
-            "<tr>"
+            f"<tr data-status='{_esc(assessment.status)}'>"
             f"<td class='w40'><span class='lvl'>{_esc(assessment.result_level)}</span>"
             f"{_esc(assessment.indicator_text)}</td>"
             f"<td><code>{_esc(assessment.matched_id or '—')}</code></td>"
@@ -288,6 +307,34 @@ def build_brief(assessments: list[Assessment], denominators: Denominators,
   .legend-row {{ display:flex; flex-wrap:wrap; gap:14px; padding:4px 14px 10px; }}
   .legend {{ font-size:11.5px; color:var(--slate); display:inline-flex; align-items:center; gap:6px; }}
   .legend i {{ width:14px; height:2.5px; display:inline-block; }}
+  .legend {{ cursor:pointer; }}
+  .chips {{ display:flex; gap:6px; flex-wrap:wrap; }}
+  .chip {{ font:inherit; font-size:11.5px; letter-spacing:0; text-transform:none;
+           padding:3px 10px; border:1px solid var(--rule); border-radius:11px;
+           background:#fff; color:var(--slate); cursor:pointer; }}
+  .chip.is-on {{ border-color:var(--ink); color:var(--ink); }}
+  h2.split {{ display:flex; align-items:center; justify-content:space-between;
+              gap:14px; flex-wrap:wrap; }}
+  .map-wrap {{ background:#fff; border:1px solid var(--rule); padding:10px 12px 8px; }}
+  .map {{ width:100%; height:auto; display:block; }}
+  .geo {{ cursor:default; }}
+  .geo:hover {{ filter:brightness(0.93); }}
+  .badge {{ font-size:10px; font-weight:600; fill:#fff; }}
+  .swatch {{ font-size:11.5px; color:var(--slate); display:inline-flex;
+             align-items:center; gap:6px; }}
+  .swatch i {{ width:11px; height:11px; display:inline-block; border-radius:2px; }}
+  .map-key {{ list-style:none; margin:12px 0 0; padding:0; display:flex;
+              flex-wrap:wrap; gap:8px 22px; font-size:12.5px; }}
+  .map-key li {{ display:inline-flex; align-items:baseline; gap:7px; }}
+  .badge-n {{ display:inline-block; width:15px; height:15px; line-height:15px;
+              border-radius:50%; background:var(--ink); color:#fff; font-size:9.5px;
+              text-align:center; font-weight:600; }}
+  .badge-v {{ color:var(--ochre); font-variant-numeric:tabular-nums; }}
+  .badge-p {{ color:var(--slate); }}
+  .map-hint {{ font-size:11px; color:var(--slate); margin:10px 0 0; }}
+  #tip {{ position:fixed; display:none; pointer-events:none; background:var(--ink);
+          color:#fff; font-size:11.5px; padding:5px 8px; border-radius:2px;
+          z-index:20; white-space:nowrap; }}
   ul.decisions {{ list-style:none; margin:0; padding:0; font-size:13px; }}
   ul.decisions li {{ padding:7px 0; border-bottom:1px solid #eee9df; }}
   ul.causes {{ list-style:none; margin:0; padding:0; }}
@@ -304,7 +351,9 @@ def build_brief(assessments: list[Assessment], denominators: Denominators,
   footer {{ margin-top:52px; padding-top:16px; border-top:1px solid var(--rule);
             font-size:11.5px; color:var(--slate); }}
   footer p {{ margin:0 0 6px; }}
-  @media print {{ body {{ background:#fff; }} .sheet {{ padding:0; }} }}
+  @media print {{ body {{ background:#fff; }} .sheet {{ padding:0; }}
+                  tr[hidden] {{ display:table-row !important; }}
+                  .chips, #tip {{ display:none !important; }} }}
 </style>
 </head>
 <body>
@@ -330,7 +379,7 @@ def build_brief(assessments: list[Assessment], denominators: Denominators,
   <p class="muted" style="margin-top:6px">Count of indicators flagged by each check.
     Amber: reportable with a stated caveat. Red: a hard blocker.</p>
 
-  <h2>Indicator by indicator</h2>
+  <h2 class="split">Indicator by indicator {chips}</h2>
   <table>
     <thead><tr><th>Indicator</th><th>Registry</th><th>Status</th><th>What stands in the way</th></tr></thead>
     <tbody>{rows}</tbody>
@@ -340,6 +389,12 @@ def build_brief(assessments: list[Assessment], denominators: Denominators,
   <p class="muted" style="margin-top:0">Index of national population, 1960 = 100, to 2020.
     Source: ISIMIP2a / HYDE national population, hosted by IIASA, retrieved with checksum verification.</p>
   {chart}
+
+  <h2>Where those denominators sit</h2>
+  <p class="muted" style="margin-top:0">{covered} of the {drawn} countries drawn carry a
+    row in the series; the rest are grey, not guessed. Growth since {series_start}, from
+    the same checksum-verified file.</p>
+  {map_html}
 
   <h2>Why the baseline year matters</h2>
   <table>
@@ -369,6 +424,46 @@ def build_brief(assessments: list[Assessment], denominators: Denominators,
     <p>Generated by aadesk. Example framework is illustrative and does not describe a real proposal.</p>
   </footer>
 </div>
+<div id="tip"></div>
+<script>
+function aadeskFilter(mode) {{
+  var rows = document.querySelectorAll("tbody tr");
+  for (var i = 0; i < rows.length; i++) {{
+    var s = rows[i].getAttribute("data-status") || "";
+    var keep = mode === "all" || s === mode ||
+               (mode === "none" && (s === "not monitorable" || s === "unmatched"));
+    rows[i].hidden = !keep;
+  }}
+  var chips = document.querySelectorAll(".chip");
+  for (var j = 0; j < chips.length; j++) {{
+    chips[j].classList.toggle("is-on", chips[j].getAttribute("data-f") === mode);
+  }}
+}}
+function aadeskSeries(el) {{
+  var line = document.getElementById("series-" + el.getAttribute("data-i"));
+  if (!line) return;
+  var off = line.style.display === "none";
+  line.style.display = off ? "" : "none";
+  el.style.opacity = off ? "1" : "0.4";
+}}
+(function () {{
+  var tip = document.getElementById("tip");
+  var geos = document.querySelectorAll(".geo");
+  for (var i = 0; i < geos.length; i++) {{
+    geos[i].addEventListener("mousemove", function (e) {{
+      var v = this.getAttribute("data-v");
+      if (!v) {{ tip.style.display = "none"; return; }}
+      tip.textContent = this.getAttribute("data-n") + " \u00b7 " + v + " since {series_start}" +
+                        " \u00b7 " + this.getAttribute("data-p") + " in {series_end}";
+      tip.style.display = "block";
+      var left = Math.min(e.clientX + 14, window.innerWidth - tip.offsetWidth - 8);
+      tip.style.left = left + "px";
+      tip.style.top = (e.clientY + 16) + "px";
+    }});
+    geos[i].addEventListener("mouseleave", function () {{ tip.style.display = "none"; }});
+  }}
+}})();
+</script>
 </body>
 </html>
 """
@@ -428,6 +523,26 @@ def export_powerbi(assessments: list[Assessment], denominators: Denominators,
     fact_denominator[["country", "year", "population"]].to_csv(
         written["fact_denominator"], index=False)
 
+    measures = out_dir / "measures.dax"
+    measures.write_text(
+        "// Paste each line into Model view → New measure (Power BI Desktop).\n"
+        "Indicators audited = COUNTROWS ( fact_assessment )\n"
+        "\n"
+        "Monitorable = CALCULATE ( COUNTROWS ( fact_assessment ), "
+        "fact_assessment[status] = \"monitorable\" )\n"
+        "\n"
+        "Monitorable share = DIVIDE ( [Monitorable], [Indicators audited] )\n"
+        "\n"
+        "Latest denominator year = MAX ( fact_denominator[year] )\n"
+        "\n"
+        "Population latest = CALCULATE ( SUM ( fact_denominator[population] ), "
+        "fact_denominator[year] = [Latest denominator year] )\n"
+        "\n"
+        "Growth since 1960 = DIVIDE ( [Population latest], "
+        "CALCULATE ( SUM ( fact_denominator[population] ), fact_denominator[year] = 1960 ) ) - 1\n",
+        encoding="utf-8")
+    written["measures"] = measures
+
     model = out_dir / "model.md"
     model.write_text(
         "# Star schema\n\n"
@@ -436,7 +551,24 @@ def export_powerbi(assessments: list[Assessment], denominators: Denominators,
         "- `dim_indicator` — registry attributes for matched indicators\n"
         "- `dim_country` — country attributes and coverage\n\n"
         "Join `fact_assessment.matched_id` → `dim_indicator.indicator_id`;\n"
-        "`fact_denominator.country` → `dim_country.country`.\n",
+        "`fact_denominator.country` → `dim_country.country`.\n\n"
+        "## Opening it in Power BI Desktop\n\n"
+        "These are plain CSVs, not a `.pbix`. They are inert until imported —\n"
+        "the interactivity (slicers, cross-filtering, drill-down) is what Power BI\n"
+        "adds, not what is shipped here.\n\n"
+        "1. **Get data ▸ Text/CSV**, `fact_assessment.csv`. In the dialog set\n"
+        "   *File origin* to **65001: Unicode (UTF-8)** — the default locale mangles\n"
+        "   accented names — then **Load**. Repeat for the other three files.\n"
+        "2. **Model view**: drag `dim_indicator[indicator_id]` onto\n"
+        "   `fact_assessment[matched_id]`, and `dim_country[country]` onto\n"
+        "   `fact_denominator[country]`. Both should be many-to-one, single direction.\n"
+        "3. **Model view ▸ New measure**: paste the measures from `measures.dax`,\n"
+        "   one at a time.\n"
+        "4. A first page that answers the donor question: a **slicer** on\n"
+        "   `fact_assessment[status]`, a **card** with `[Monitorable share]`, a\n"
+        "   **matrix** of `status` against `geography`, and a **line chart** of\n"
+        "   `population` by `year` with `dim_country[country]` as legend.\n"
+        "5. **File ▸ Save as** `.pbix` if you want the report itself versioned.\n",
         encoding="utf-8")
     written["model"] = model
     return written

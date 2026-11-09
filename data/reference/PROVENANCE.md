@@ -44,3 +44,28 @@ health, energy, infrastructure and population inputs. The flood and crop
 layers referenced in the registry were checked against the same API; their
 catalogue entries are real, their use as national indicators is not yet
 implemented (see `docs/limitations.md`).
+
+## Boundary geometry
+
+`data/reference/ne_110m_admin0_world.json`
+
+| Field | Value |
+|---|---|
+| Source | Natural Earth 110m Cultural Vectors, admin-0 countries |
+| Upstream | `nvkelso/natural-earth-vector`, `geojson/ne_110m_admin0_countries.geojson` |
+| Rights | Public domain — no attribution required |
+| Derived | outer rings only, vertices rounded to 0.1°, Antarctica and everything north of 84°N omitted |
+| Features | 176 |
+| Built | 2026-11-09 |
+
+The map needs coastlines at render time, and the brief must draw with no
+network. The file is therefore derived once and shipped: 176 features, outer
+rings only (lakes are filled, which is wrong for a physical map and irrelevant
+for a choropleth of national totals). Rounding to 0.1° is about 0.3 px at
+1000 px width, so the simplification is invisible at the size the brief
+prints.
+
+This is cartographic geometry, not an authoritative boundary representation.
+Disputed and de facto boundaries follow Natural Earth's own depiction. Before
+any map of this kind is published externally by an agency, it must be
+redrawn on that agency's official boundary layer — see `docs/limitations.md`.

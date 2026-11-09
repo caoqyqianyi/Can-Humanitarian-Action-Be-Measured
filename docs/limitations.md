@@ -52,3 +52,21 @@ context.
 `data/examples/logframe_example.csv` is written to exercise every failure mode,
 not to describe a real proposal. It should not be cited as an example of
 practice.
+
+## Boundaries are cartographic, not authoritative
+
+The map in the brief draws Natural Earth 110m geometry. That is adequate to
+place a denominator series and entirely inadequate as a published boundary
+representation: disputed and de facto lines follow Natural Earth's own
+depiction, and the simplification fills lakes and merges small islands.
+
+For internal analysis this does not matter. For anything that leaves the
+building it does — boundary representation is politically sensitive in most
+of the contexts this tool is built for, and an agency's own reference layer
+governs, not a public-domain one. Redrawing on that layer is a substitution,
+not a redesign: `mapview.load_features()` reads one file.
+
+The choropleth also colours *states*, while the series counts *national units*
+— 238 of them, including dependencies the map draws inside another country.
+The coverage line in the brief ("172 of the 176 countries drawn") is computed
+at render time so the gap is stated rather than glossed.

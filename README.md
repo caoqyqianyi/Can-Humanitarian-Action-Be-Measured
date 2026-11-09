@@ -2,7 +2,7 @@
 
 **Check whether a humanitarian results framework can actually be measured — before it is signed — then build the brief from evidence that is licensed, checksum-verified and disclosure-safe.**
 
-![tests](https://img.shields.io/badge/tests-31%20passed-0f6b5c)
+![tests](https://img.shields.io/badge/tests-36%20passed-0f6b5c)
 ![python](https://img.shields.io/badge/python-3.10%2B-14211d)
 ![licence](https://img.shields.io/badge/code-MIT-14211d)
 ![data](https://img.shields.io/badge/data-ISIMIP%20%2F%20IIASA-a85e29)
@@ -88,11 +88,16 @@ AUDIT  Somalia–Yemen multi-country results framework
 ```
 
 The run writes four things: `scorecard.csv`, `assessments.json`,
-`brief.html` (a standalone brief with inline SVG charts, no external assets) and
-a Power BI star schema in `output/powerbi/`.
+`brief.html` (a standalone brief with inline SVG charts and maps, no external
+assets) and a Power BI star schema in `output/powerbi/`.
 
 The brief is the deliverable most people actually want: one page, printable, no
-network required.
+network required. It is also interactive without a CDN, a build step or a
+tile server — the status chips filter the indicator table, hovering a country
+gives its growth and its 2020 population, and clicking a series in the legend
+hides it. The filters exist only on screen: print rules expand every row and
+drop the chips, so the version that reaches a printer or a PDF is the complete
+one, and the two can never disagree about a number.
 
 ---
 
@@ -150,9 +155,13 @@ of persons, converted to persons with the raw column kept so the unit conversion
 stays auditable. Full digest and retrieval record:
 [`data/reference/PROVENANCE.md`](data/reference/PROVENANCE.md).
 
-<img src="assets/brief-chart.png" alt="Indexed national population, 1960 = 100, to 2020 for Bangladesh, Chad, Ethiopia, Somalia and Yemen; below, a table of 2019 and 2020 populations with change and growth since 1960" width="940">
+<img src="assets/brief-map.png" alt="World choropleth of population growth from 1960 to 2020, with the five countries this framework names numbered: Bangladesh +252%, Chad +443%, Ethiopia +409%, Somalia +484%, Yemen +485%" width="940">
 
-<sub>Population is a denominator here, not a headline. Indexing to 1960 keeps five countries on one axis; the Somalia step in the late 1980s is visible without a caption, and the table underneath carries the numbers the line cannot.</sub>
+<sub>172 of the 176 countries drawn carry a row in the series. Grey means the series has no row — not zero, and not a number the code invented to fill the map. Boundaries are Natural Earth 110m, not an authoritative depiction: see <a href="docs/limitations.md">limitations</a>.</sub>
+
+<img src="assets/brief-chart.png" alt="Indexed national population, 1960 = 100, to 2020 for Bangladesh, Chad, Ethiopia, Somalia and Yemen" width="940">
+
+<sub>Indexing to 1960 puts a 170-million population and a 16-million one on the same axis. Somalia's late-1980s step is visible without needing a caption; the exact figures sit in the baseline table further down the brief.</sub>
 
 **What is catalogued but not yet computed.** The registry also references the
 ISIMIP CaMa-Flood 100-year flood-depth layer and the gridded crop-model output.
@@ -196,7 +205,8 @@ aadesk/
 │   ├── registry/indicators.yml     curated registry: definition, source, cadence, disclosure
 │   └── sources.yml                 custodians, access conditions, licences
 ├── data/
-│   ├── reference/                  ISIMIP population extract + SHA-512 provenance
+│   ├── reference/                  ISIMIP population extract + SHA-512 provenance,
+│   │                               Natural Earth 110m boundaries for the map
 │   ├── examples/                   synthetic framework used by the demo
 │   └── cache/                      downloads (gitignored)
 ├── src/aadesk/
@@ -206,11 +216,12 @@ aadesk/
 │   ├── rfcheck.py                  matching and the five checks
 │   ├── disclosure.py               tiering, small-count suppression
 │   ├── report.py                   standalone HTML brief, Power BI star schema
+│   ├── mapview.py                  inline-SVG world choropleth, no tiles, no JS library
 │   ├── extract.py                  rule-based indicator extraction from proposal text
 │   └── cli.py
 ├── docs/                           methodology · data protection · extraction · limitations
 ├── assets/                         figures in this README (re-renderable sources in assets/src/)
-├── tests/                          31 tests, including regression cases
+├── tests/                          36 tests, including regression cases
 └── output/                         example run: scorecard, brief, Power BI model
 ```
 
@@ -259,6 +270,30 @@ Then **Settings → Pages → Build and deployment → Deploy from a branch**, b
 
 Replace `qianyi` in `CITATION.cff`, `pyproject.toml` and the link at the bottom of
 this file if your handle differs.
+
+---
+
+## The Power BI export
+
+`output/powerbi/` holds four CSVs — two dimensions, two fact tables — plus
+`measures.dax` and `model.md`. It is a **model, not a `.pbix`**: a workbook with
+your slicer layout in it would be someone else's design, and a binary in git
+would be unreadable and unmergeable. The interactivity comes from Power BI
+itself once the model is imported, which takes about two minutes:
+
+1. **Get data → Text/CSV**, one file at a time. On the import dialog set *File
+   origin* to `65001: Unicode (UTF-8)` — the country names are UTF-8, and a
+   wrong origin turns `Côte d'Ivoire` into noise.
+2. **Model view**: drag `dim_indicator[indicator_id]` onto
+   `fact_assessment[matched_id]`, and `dim_country[country]` onto
+   `fact_denominator[country]`. Both are many-to-one, single direction.
+3. **Paste the measures** from `measures.dax` — five of them: indicators audited,
+   monitorable count, monitorable share, latest population, growth since 1960.
+4. A defensible first screen: a status slicer, a *Monitorable share* card, a
+   status × geography matrix, and population by year as a line.
+
+Step-by-step, with the field list and the reason for each relationship, is in
+[`output/powerbi/model.md`](output/powerbi/model.md).
 
 ---
 

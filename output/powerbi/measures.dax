@@ -1,0 +1,12 @@
+// Paste each line into Model view → New measure (Power BI Desktop).
+Indicators audited = COUNTROWS ( fact_assessment )
+
+Monitorable = CALCULATE ( COUNTROWS ( fact_assessment ), fact_assessment[status] = "monitorable" )
+
+Monitorable share = DIVIDE ( [Monitorable], [Indicators audited] )
+
+Latest denominator year = MAX ( fact_denominator[year] )
+
+Population latest = CALCULATE ( SUM ( fact_denominator[population] ), fact_denominator[year] = [Latest denominator year] )
+
+Growth since 1960 = DIVIDE ( [Population latest], CALCULATE ( SUM ( fact_denominator[population] ), fact_denominator[year] = 1960 ) ) - 1
