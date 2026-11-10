@@ -24,8 +24,11 @@ from .rfcheck import Assessment
 INK = "#14211d"
 PAPER = "#fbfaf6"
 TEAL = "#0f6b5c"
-OCHRE = "#a85e29"
-BRICK = "#9c3b2e"
+OCHRE = "#a05a1e"
+BRICK = "#8b2a33"
+TEAL_FILL = "#1c7a52"
+AMBER_FILL = "#e3a01f"
+CRIMSON_FILL = "#a52a3a"
 SLATE = "#5f6b66"
 SERIES = ["#0f6b5c", "#a85e29", "#3f6b8f", "#6b7a3f", "#7a4a5c", "#8a6a2f"]
 
@@ -153,8 +156,9 @@ def _flag_lines(assessment: Assessment, limit: int = 3) -> str:
 
 
 CSS = """
-:root{--ink:#14211d;--paper:#fbfaf6;--card:#fff;--teal:#0f6b5c;--ochre:#a85e29;
-      --brick:#9c3b2e;--slate:#5f6b66;--rule:#e2ddd2;--hair:#efeae0;}
+:root{--ink:#14211d;--paper:#fbfaf6;--card:#fff;--teal:#0f6b5c;--ochre:#a05a1e;
+      --brick:#8b2a33;--slate:#5f6b66;--rule:#e2ddd2;--hair:#efeae0;
+      --green:#1c7a52;--amber:#e3a01f;--crimson:#a52a3a;}
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--ink);
      font:15px/1.62 -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
@@ -169,22 +173,28 @@ body{margin:0;background:var(--paper);color:var(--ink);
 .brand span{color:var(--slate);font-weight:400;letter-spacing:.12em;}
 .issue{font-size:11px;color:var(--slate);letter-spacing:.05em;font-variant-numeric:tabular-nums;}
 h1{font-family:ui-serif,Georgia,"Iowan Old Style","Times New Roman",serif;
-   font-weight:600;font-size:44px;line-height:1.1;letter-spacing:-.018em;
-   margin:36px 0 0;max-width:24ch;}
+   font-weight:600;font-size:46px;line-height:1.08;letter-spacing:-.018em;
+   margin:34px 0 0;}
 .standfirst{font-family:ui-serif,Georgia,"Iowan Old Style","Times New Roman",serif;
-            font-size:21px;line-height:1.46;color:#273731;margin:22px 0 0;max-width:58ch;}
-.standfirst.sub{font-size:17px;color:#43514b;margin-top:14px;max-width:64ch;}
+            font-size:20px;line-height:1.44;color:#273731;margin:20px 0 0;}
+.standfirst.sub{font-size:16.5px;color:#43514b;margin-top:12px;}
 .dateline{display:flex;flex-wrap:wrap;gap:10px 26px;margin:26px 0 0;
           font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);}
 .dateline b{color:var(--ink);font-weight:600;}
 
 /* section nav */
 nav{position:sticky;top:0;z-index:9;background:var(--paper);
-    border-bottom:1px solid var(--rule);margin-top:30px;
-    display:flex;flex-wrap:wrap;gap:0 24px;}
-nav a{display:inline-block;padding:11px 0 9px;font-size:10.5px;letter-spacing:.1em;
-      text-transform:uppercase;color:var(--slate);text-decoration:none;border-bottom:2px solid transparent;}
-nav a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+    border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);margin-top:34px;
+    display:flex;flex-wrap:nowrap;overflow-x:auto;}
+nav a{display:flex;align-items:baseline;gap:8px;padding:12px 15px 10px;white-space:nowrap;
+      font-size:12px;font-weight:650;letter-spacing:.005em;color:var(--ink);
+      text-decoration:none;border-right:1px solid var(--hair);
+      border-bottom:3px solid transparent;}
+nav a b{font-size:9.5px;font-weight:700;letter-spacing:.08em;color:var(--ochre);
+        font-variant-numeric:tabular-nums;}
+nav a:hover{background:var(--card);border-bottom-color:var(--ochre);}
+nav a.is-current{background:var(--ink);color:var(--paper);border-bottom-color:var(--ink);}
+nav a.is-current b{color:var(--amber);}
 
 /* sections */
 section{padding-top:46px;scroll-margin-top:56px;}
@@ -193,7 +203,7 @@ section{padding-top:46px;scroll-margin-top:56px;}
 .shead h2{margin:0;font-family:ui-serif,Georgia,"Iowan Old Style","Times New Roman",serif;
           font-size:22px;font-weight:600;letter-spacing:-.01em;display:flex;align-items:baseline;gap:13px;}
 .sno{font-size:10.5px;letter-spacing:.12em;color:var(--slate);font-variant-numeric:tabular-nums;}
-.dek{margin:0 0 18px;color:var(--slate);font-size:13px;max-width:78ch;}
+.dek{margin:0 0 18px;color:var(--slate);font-size:13px;}
 
 /* kpis */
 .kpis{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--rule);
@@ -205,11 +215,12 @@ section{padding-top:46px;scroll-margin-top:56px;}
 .kpi .k{font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--slate);
         margin-top:10px;}
 .kpi.good .n{color:var(--teal);} .kpi.warn .n{color:var(--ochre);} .kpi.bad .n{color:var(--brick);}
-.band{display:flex;height:9px;margin:24px 0 0;}
-.band i{display:block;height:100%;}
-.bandkey{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:10px;font-size:11px;color:var(--slate);}
-.bandkey span::before{content:"";display:inline-block;width:8px;height:8px;margin-right:7px;
-                      background:var(--c);vertical-align:0;}
+.band{display:flex;height:14px;margin:24px 0 0;}
+.band i{display:block;height:100%;box-shadow:inset -2px 0 0 var(--paper);}
+.bandkey{display:flex;flex-wrap:wrap;gap:10px 24px;margin-top:11px;font-size:11.5px;color:var(--slate);}
+.bandkey span::before{content:"";display:inline-block;width:11px;height:11px;margin-right:8px;
+                      background:var(--c);vertical-align:-1px;}
+.bandkey b{color:var(--ink);font-variant-numeric:tabular-nums;margin-right:3px;}
 
 /* table */
 .tbl{width:100%;border-collapse:collapse;font-size:13.5px;}
@@ -287,14 +298,20 @@ ul.decisions li:last-child{border-bottom:0;}
 .note{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--teal);
       padding:15px 18px;font-size:12.5px;margin-top:16px;color:#3d4b45;}
 
-/* method strip */
-.method{display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--ink);
-        border-bottom:1px solid var(--rule);margin-top:56px;}
-.mstep{padding:18px 16px 20px;border-right:1px solid var(--hair);}
-.mstep:last-child{border-right:0;}
-.mstep b{display:block;font-size:10px;letter-spacing:.12em;color:var(--slate);margin-bottom:7px;}
-.mstep h3{margin:0 0 6px;font-size:13.5px;font-weight:650;}
-.mstep p{margin:0;font-size:11.5px;line-height:1.5;color:var(--slate);}
+/* pipeline */
+.flow{display:grid;grid-template-columns:1fr 26px 1fr 26px 1fr 26px 1fr;margin:4px 0 0;}
+.fstage{background:var(--card);border:1px solid var(--rule);border-top:3px solid var(--ink);
+        padding:14px 14px 16px;}
+.fno{font-size:9.5px;letter-spacing:.14em;font-weight:700;color:var(--ochre);}
+.fstage h3{margin:7px 0 6px;font-size:12.5px;font-weight:650;letter-spacing:-.005em;}
+.fstage p{margin:0;font-size:11.5px;line-height:1.5;color:var(--slate);}
+.farrow{display:flex;align-items:center;justify-content:center;color:var(--ochre);font-size:16px;}
+.fout{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--rule);
+      margin-top:10px;background:var(--card);}
+.fout div{padding:12px 14px;border-right:1px solid var(--hair);font-size:11.5px;color:var(--slate);}
+.fout div:last-child{border-right:0;}
+.fout b{display:block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);
+        margin-bottom:4px;}
 
 footer{margin-top:26px;font-size:11.5px;line-height:1.65;color:var(--slate);}
 footer p{margin:0 0 7px;}
@@ -315,17 +332,23 @@ a{color:var(--teal);}
   .kpis{grid-template-columns:repeat(2,1fr);}
   .kpi:nth-child(2){border-right:0;}
   .kpi:nth-child(1),.kpi:nth-child(2){border-bottom:1px solid var(--hair);}
-  .method{grid-template-columns:1fr 1fr;}
-  .mstep:nth-child(2){border-right:0;}
+  .flow{grid-template-columns:1fr;}
+  .farrow{height:22px;} .fout{grid-template-columns:1fr;}
+  .fout div{border-right:0;border-bottom:1px solid var(--hair);}
 }
 @media print{
   body{background:#fff;font-size:11px;}
   .sheet{max-width:none;padding:0;}
   nav,.chips,#tip,.map-hint,.hint{display:none!important;}
+  #s3 .dek{display:none;}
   tr[hidden]{display:table-row!important;}
   .tbl th{position:static;cursor:default;}
-  section{padding-top:24px;page-break-inside:avoid;}
-  .method{margin-top:32px;}
+  section{padding-top:20px;}
+  .shead{break-after:avoid;}
+  .card,.map-wrap,.flow,.fout,ul.decisions li{break-inside:avoid;}
+  .flow{grid-template-columns:1fr 22px 1fr 22px 1fr 22px 1fr;margin-top:14px;}
+  .fstage{break-inside:avoid;}
+  .fout{grid-template-columns:repeat(3,1fr);}
   h1{font-size:28px;} .standfirst{font-size:15px;color:#000;}
   a{color:inherit;text-decoration:none;}
   @page{margin:16mm;}
@@ -444,6 +467,25 @@ function aadeskSort(th, kind) {
       tip.style.top = (e.clientY + 16) + "px";
     });
   }
+
+  /* contents bar: mark the section in view */
+  var links = document.querySelectorAll("nav a");
+  var ids = [];
+  for (var k = 0; k < links.length; k++) ids.push(links[k].getAttribute("href").slice(1));
+  function markCurrent() {
+    var at = window.scrollY + 150, best = 0;
+    for (var m = 0; m < ids.length; m++) {
+      var sec = document.getElementById(ids[m]);
+      if (sec && sec.offsetTop <= at) best = m;
+    }
+    for (var n = 0; n < links.length; n++) {
+      if (n === best) links[n].classList.add("is-current");
+      else links[n].classList.remove("is-current");
+    }
+  }
+  window.addEventListener("scroll", markCurrent, { passive: true });
+  window.addEventListener("resize", markCurrent);
+  markCurrent();
 })();
 """
 
@@ -598,13 +640,14 @@ def build_brief(assessments: list[Assessment], denominators: Denominators,
   </div>
 
   <nav aria-label="Contents">
-    <a href="#s1">Verdict</a>
-    <a href="#s2">Caveats</a>
-    <a href="#s3">Line by line</a>
-    <a href="#s4">Denominators</a>
-    <a href="#s5">Where they sit</a>
-    <a href="#s6">Baseline</a>
-    <a href="#s7">Disclosure</a>
+    <a href="#s1"><b>01</b>Verdict</a>
+    <a href="#s2"><b>02</b>Caveats</a>
+    <a href="#s3"><b>03</b>Line by line</a>
+    <a href="#s4"><b>04</b>Denominators</a>
+    <a href="#s5"><b>05</b>Map</a>
+    <a href="#s6"><b>06</b>Baseline</a>
+    <a href="#s7"><b>07</b>Disclosure</a>
+    <a href="#s8"><b>08</b>Method</a>
   </nav>
 
   <section id="s1">
@@ -616,14 +659,14 @@ def build_brief(assessments: list[Assessment], denominators: Denominators,
       <div class="kpi bad"><div class="n">{blocked}</div><div class="k">no data trail</div></div>
     </div>
     <div class="band">
-      <i style="width:{ok / max(total, 1) * 100:.2f}%;background:{TEAL}"></i>
-      <i style="width:{caution / max(total, 1) * 100:.2f}%;background:{OCHRE}"></i>
-      <i style="width:{blocked / max(total, 1) * 100:.2f}%;background:{BRICK}"></i>
+      <i style="width:{ok / max(total, 1) * 100:.2f}%;background:{TEAL_FILL}"></i>
+      <i style="width:{caution / max(total, 1) * 100:.2f}%;background:{AMBER_FILL}"></i>
+      <i style="width:{blocked / max(total, 1) * 100:.2f}%;background:{CRIMSON_FILL}"></i>
     </div>
     <div class="bandkey">
-      <span style="--c:{TEAL}">monitorable as written</span>
-      <span style="--c:{OCHRE}">reportable with a caveat</span>
-      <span style="--c:{BRICK}">needs reformulation or a collection instrument</span>
+      <span style="--c:{TEAL_FILL}"><b>{ok}</b>monitorable as written</span>
+      <span style="--c:{AMBER_FILL}"><b>{caution}</b>reportable with a caveat</span>
+      <span style="--c:{CRIMSON_FILL}"><b>{blocked}</b>needs reformulation or a collection instrument</span>
     </div>
   </section>
 
@@ -691,20 +734,36 @@ def build_brief(assessments: list[Assessment], denominators: Denominators,
       rather than relying on reviewer memory.</div>
   </section>
 
-  <div class="method">
-    <div class="mstep"><b>STEP 01</b><h3>Evidence, declared</h3>
-      <p>Custodian, access condition and licence written down in <code>config/sources.yml</code>
-        before anything is matched.</p></div>
-    <div class="mstep"><b>STEP 02</b><h3>Registry, as data</h3>
-      <p>Unit, cadence, promised splits and disclosure tier per indicator, in a YAML file that
-        CI validates.</p></div>
-    <div class="mstep"><b>STEP 03</b><h3>Audit, mechanically</h3>
-      <p>Token and phrase matching with a 0.45 floor, then five checks: availability,
-        disaggregation, cadence, geography and baseline, disclosure.</p></div>
-    <div class="mstep"><b>STEP 04</b><h3>Gate, on the way out</h3>
-      <p>Every output is tiered before publication. Internal stays internal; small counts are
-        generalised.</p></div>
-  </div>
+  <section id="s8">
+    <div class="shead"><h2><span class="sno">08</span>How this brief was produced</h2></div>
+    <p class="dek">Four stages, no manual step in the middle. The population series behind sections
+      four and five is fetched, checksummed and cached by the first stage; everything after it
+      reads from disk.</p>
+    <div class="flow">
+      <div class="fstage"><div class="fno">STAGE 01</div><h3>Evidence, declared</h3>
+        <p>Custodian, access condition and licence are written into <code>sources.yml</code> before
+          a single indicator is matched. The download records its own provenance and digest.</p></div>
+      <div class="farrow" aria-hidden="true">&rarr;</div>
+      <div class="fstage"><div class="fno">STAGE 02</div><h3>Registry, as data</h3>
+        <p>Each known indicator carries its unit, cadence, promised disaggregations and disclosure
+          tier in YAML — a file CI validates, not a paragraph in a guideline.</p></div>
+      <div class="farrow" aria-hidden="true">&rarr;</div>
+      <div class="fstage"><div class="fno">STAGE 03</div><h3>Match, then five checks</h3>
+        <p>Token and phrase matching with a 0.45 floor; then availability, disaggregation, cadence,
+          geography and baseline, and disclosure. A weak match is refused, never guessed.</p></div>
+      <div class="farrow" aria-hidden="true">&rarr;</div>
+      <div class="fstage"><div class="fno">STAGE 04</div><h3>Verdict, per line</h3>
+        <p>Monitorable as written, reportable with one named caveat, or no data trail. The top
+          cause is printed so the fix is obvious.</p></div>
+    </div>
+    <div class="fout">
+      <div><b>This page</b><code>brief.html</code> — one file, no network, prints complete</div>
+      <div><b>Scorecard</b><code>scorecard.csv</code> — one row per indicator, for a reviewer</div>
+      <div><b>Reporting</b><code>powerbi/</code> — star schema and five DAX measures</div>
+    </div>
+    <p class="hint">The disclosure gate runs before any of the three is written: an internal source
+      stays aggregate, and cell counts below five are generalised.</p>
+  </section>
 
   <footer>
     <p><b>Provenance.</b> Population series: ISIMIP2a input dataset

@@ -139,8 +139,8 @@ Full method, thresholds and known weaknesses: [`docs/methodology.md`](docs/metho
 
 ## The brief
 
-One page, printable, self-contained. It is also interactive without a CDN, a
-build step or a tile server.
+One file, printable, self-contained: about seven A4 pages with the full table. It is
+also interactive without a CDN, a build step or a tile server.
 
 <p align="center">
   <img src="assets/brief-table.png" alt="Indicator-by-indicator table: each line carries a status pill and the specific constraint that stands in the way" width="900">
@@ -153,6 +153,10 @@ build step or a tile server.
 - **Hover a country** on the map for its growth and its 2020 population.
 - **Hover a year** on the line chart for the values of every series at that year.
 - **Click a legend entry** to hide that series.
+- **The contents bar** marks the section you are reading and jumps to any other, so a seven-part
+  document does not have to be scrolled blind.
+- **The pipeline is in the page**, not only in this README: section 08 redraws the four stages
+  and the three outputs in HTML, and survives printing as text.
 
 The filters exist only on screen. `@media print` expands every row and drops the
 chips, so the version that reaches a printer or a PDF is the complete one and
@@ -190,6 +194,12 @@ stays auditable. Digest and retrieval record: [`data/reference/PROVENANCE.md`](d
 </p>
 
 <p align="center"><sub>Indexing to 1960 puts a 170-million population and a 16-million one on the same axis. Somalia's late-1980s step is visible without a caption.</sub></p>
+
+<p align="center">
+  <img src="assets/brief-map.png" alt="World map coloured by population growth since 1960, with the five framework countries numbered and the four countries with no series shown in grey" width="900">
+</p>
+
+<p align="center"><sub>The same series, drawn: 172 of the 176 countries the geometry covers carry a row. The four grey ones are grey because the series has no row for them — not because they are small or inconvenient.</sub></p>
 
 **What is catalogued but not yet computed.** The registry also references the ISIMIP
 CaMa-Flood 100-year flood-depth layer and the gridded crop-model output. Both are
