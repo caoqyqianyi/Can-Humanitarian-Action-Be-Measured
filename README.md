@@ -351,7 +351,7 @@ Field list and the reason for each relationship: [`output/powerbi/model.md`](out
 
 The repository is public, so the brief can be read without cloning:
 
-**https://caoqyqianyi.github.io/can-humanitarian-action-be-measured/**
+**https://caoqyqianyi.github.io/Can-Humanitarian-Action-Be-Measured/**
 
 That URL is `docs/index.html` served by Pages, branch `main`, folder `/docs` —
 the same file as `output/brief.html`, copied by `make pages`.
