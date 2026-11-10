@@ -23,7 +23,7 @@ dev = ["pytest>=7.0"]
 aadesk = "aadesk.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/qianyi/aa-data-desk"
+Homepage = "https://github.com/caoqyqianyi/aa-data-desk"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/aadesk"]

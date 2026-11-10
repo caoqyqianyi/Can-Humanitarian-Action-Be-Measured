@@ -369,5 +369,5 @@ See [`LICENSE`](LICENSE) and [`data/reference/PROVENANCE.md`](data/reference/PRO
 
 ---
 
-<sub>Built by <a href="https://github.com/qianyi">Qianyi Cao</a> — data scientist working on
+<sub>Built by <a href="https://github.com/caoqyqianyi">Qianyi Cao</a> — data scientist working on
 geospatial and climate data for humanitarian and development contexts.</sub>
