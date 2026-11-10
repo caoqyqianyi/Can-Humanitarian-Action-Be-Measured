@@ -44,7 +44,7 @@
         {
           "name": "disclosure",
           "status": "pass",
-          "detail": "'public' output fits a 'public' product"
+          "detail": "public source, public product \u2014 no restriction"
         }
       ],
       "summary": "Reportable only with a stated caveat: source exists but needs preparation (World Food Programme (VAM)); source supports displacement_status, geography, sex_of_head; promised sex is not available"
@@ -124,7 +124,7 @@
         {
           "name": "disclosure",
           "status": "pass",
-          "detail": "'public' output fits a 'public' product"
+          "detail": "public source, public product \u2014 no restriction"
         }
       ],
       "summary": "Backed by ISIMIP2a input data \u2014 HYDE national population, annual 1901\u20132020."
@@ -164,7 +164,7 @@
         {
           "name": "disclosure",
           "status": "pass",
-          "detail": "'public' output fits a 'public' product"
+          "detail": "public source, public product \u2014 no restriction"
         }
       ],
       "summary": "Reportable only with a stated caveat: source exists but needs preparation (ISIMIP data portal (hosted by IIASA))"
@@ -284,7 +284,7 @@
         {
           "name": "disclosure",
           "status": "pass",
-          "detail": "'public' output fits a 'public' product"
+          "detail": "public source, public product \u2014 no restriction"
         }
       ],
       "summary": "Reportable only with a stated caveat: source exists but needs preparation (IDMC / Norwegian Refugee Council); promised quarterly; source runs annual \u2014 values will be carried forward, not measured"
@@ -324,7 +324,7 @@
         {
           "name": "disclosure",
           "status": "pass",
-          "detail": "'public' output fits a 'public' product"
+          "detail": "public source, public product \u2014 no restriction"
         }
       ],
       "summary": "Reportable only with a stated caveat: source exists but needs preparation (ISIMIP data portal (hosted by IIASA))"
@@ -404,7 +404,7 @@
         {
           "name": "disclosure",
           "status": "pass",
-          "detail": "'public' output fits a 'public' product"
+          "detail": "public source, public product \u2014 no restriction"
         }
       ],
       "summary": "Reportable only with a stated caveat: source exists but needs preparation (Survey implementing agency; UNICEF for global estimates); promised monthly; source runs biennial \u2014 values will be carried forward, not measured"

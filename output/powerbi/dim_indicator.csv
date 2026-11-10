@@ -1,13 +1,13 @@
 indicator_id,indicator_name,availability,disclosure
-FS-FCS,Share of households with adequate food consumption (FCS),source exists but needs preparation (World Food Programme (VAM)),'public' output fits a 'public' product
+FS-FCS,Share of households with adequate food consumption (FCS),source exists but needs preparation (World Food Programme (VAM)),"public source, public product — no restriction"
 FS-CASH-REACH,People reached with emergency cash assistance,source exists but needs preparation (Implementing organisation),source is 'internal'; only reviewed aggregate figures may be published
-POP-DENOM,National population denominator,open source exists (ISIMIP data portal (hosted by IIASA); methodology HYDE (PBL)),'public' output fits a 'public' product
-HAZ-FLOOD-EXPO,Population in areas exposed to 1-in-100-year river flooding,source exists but needs preparation (ISIMIP data portal (hosted by IIASA)),'public' output fits a 'public' product
+POP-DENOM,National population denominator,open source exists (ISIMIP data portal (hosted by IIASA); methodology HYDE (PBL)),"public source, public product — no restriction"
+HAZ-FLOOD-EXPO,Population in areas exposed to 1-in-100-year river flooding,source exists but needs preparation (ISIMIP data portal (hosted by IIASA)),"public source, public product — no restriction"
 AA-TRIGGER-LATENCY,Days between anticipatory action trigger and first disbursement,source exists but needs preparation (Implementing organisation),source is 'internal'; only reviewed aggregate figures may be published
 LOC-PARTNER-SHARE,Share of response delivered through local partners,source exists but needs preparation (Implementing organisation),source is 'internal'; only reviewed aggregate figures may be published
-PROT-DISPLACED,People internally displaced by conflict and violence,source exists but needs preparation (IDMC / Norwegian Refugee Council),'public' output fits a 'public' product
-AG-YIELD-ANOMALY,Crop yield anomaly against the five-year average,source exists but needs preparation (ISIMIP data portal (hosted by IIASA)),'public' output fits a 'public' product
+PROT-DISPLACED,People internally displaced by conflict and violence,source exists but needs preparation (IDMC / Norwegian Refugee Council),"public source, public product — no restriction"
+AG-YIELD-ANOMALY,Crop yield anomaly against the five-year average,source exists but needs preparation (ISIMIP data portal (hosted by IIASA)),"public source, public product — no restriction"
 PROT-ACCESS,Access constraint incidents affecting humanitarian delivery,source exists but needs preparation (ACAPS),source is 'internal'; only reviewed aggregate figures may be published
-NUT-GAM,Prevalence of global acute malnutrition (GAM),source exists but needs preparation (Survey implementing agency; UNICEF for global estimates),'public' output fits a 'public' product
+NUT-GAM,Prevalence of global acute malnutrition (GAM),source exists but needs preparation (Survey implementing agency; UNICEF for global estimates),"public source, public product — no restriction"
 IM-DISABILITY,Share of assisted people with disability recorded,no consistent data source identified across the portfolio,source is 'internal'; only reviewed aggregate figures may be published
 GEN-DECISION,Share of women in partner decision-making positions,no consistent data source identified across the portfolio,source is 'internal'; only reviewed aggregate figures may be published

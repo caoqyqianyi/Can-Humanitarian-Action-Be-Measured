@@ -232,7 +232,7 @@ def _check_disclosure(ind: Indicator, publication: str) -> Check:
     ind_rank = PUBLICATION_RANK.get(ind.disclosure.lower(), 2)
     if pub_rank >= ind_rank:
         return Check("disclosure", "pass",
-                     f"'{ind.disclosure}' output fits a '{publication}' product")
+                     f"{ind.disclosure} source, {publication} product — no restriction")
     if ind_rank - pub_rank == 1:
         return Check("disclosure", "warn",
                      f"source is '{ind.disclosure}'; only reviewed aggregate figures "
