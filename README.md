@@ -363,7 +363,8 @@ series served by the ISIMIP portal hosted by IIASA, **CC BY 4.0** — attributio
 required, and dataset rights should be re-checked at the portal before reuse.
 Boundary geometry is Natural Earth 110m, public domain.
 
-See [`LICENSE`](LICENSE) and [`data/reference/PROVENANCE.md`](data/reference/PROVENANCE.md).
+See [`LICENSE`](LICENSE), [`NOTICE.md`](NOTICE.md) and
+[`data/reference/PROVENANCE.md`](data/reference/PROVENANCE.md).
 
 ---
 

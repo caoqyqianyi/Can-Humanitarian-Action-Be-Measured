@@ -1,0 +1,9 @@
+# Language statistics: keep the badge honest. The brief, its figures and the
+# exported tables are outputs of the code, not source.
+assets/*.png          linguist-vendored
+assets/src/**         linguist-documentation
+docs/index.html       linguist-generated
+output/**             linguist-generated
+data/reference/*.csv  linguist-vendored
+data/reference/*.json linguist-vendored
+*.png                 binary
