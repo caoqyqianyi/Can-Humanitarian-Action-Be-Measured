@@ -347,14 +347,12 @@ Field list and the reason for each relationship: [`output/powerbi/model.md`](out
 
 `docs/index.html` is a copy of the brief, so GitHub Pages serves it with no build.
 
-```bash
-git remote add origin git@github.com:<your-handle>/aa-data-desk.git
-git push -u origin main
-```
+The repository is public, so the brief can be read without cloning:
 
-Then **Settings → Pages → Deploy from a branch**, branch `main`, folder `/docs`.
-The example run is readable at `https://<your-handle>.github.io/aa-data-desk/`
-without anyone cloning the repo.
+**https://caoqyqianyi.github.io/aa-data-desk/**
+
+That URL is `docs/index.html` served by Pages, branch `main`, folder `/docs` —
+the same file as `output/brief.html`, copied by `make pages`.
 
 ---
 
