@@ -286,7 +286,7 @@ ul.causes li{display:grid;grid-template-columns:140px 1fr 34px;align-items:cente
              padding:7px 0;font-size:13px;border-bottom:1px solid var(--hair);}
 ul.causes li:last-child{border-bottom:0;}
 .cause-name{color:var(--ink);}
-.cause-bar{height:8px;background:var(--hair);}
+.cause-bar{height:10px;background:var(--hair);display:flex;}
 .cause-bar i{display:block;height:100%;}
 .cause-count{text-align:right;font-variant-numeric:tabular-nums;color:var(--slate);}
 
@@ -561,12 +561,15 @@ def build_brief(assessments: list[Assessment], denominators: Denominators,
     if merged:
         ceiling = max(merged.values())
         for name, count in merged.most_common():
-            share = count / ceiling * 100
-            colour = BRICK if fail_counts.get(name, 0) > warn_counts.get(name, 0) else OCHRE
+            done = fail_counts.get(name, 0)
+            soft = warn_counts.get(name, 0)
             causes += (
                 "<li>"
                 f"<span class='cause-name'>{_esc(name)}</span>"
-                f"<span class='cause-bar'><i style='width:{share:.0f}%;background:{colour}'></i></span>"
+                "<span class='cause-bar'>"
+                f"<i style='width:{done / ceiling * 100:.1f}%;background:{CRIMSON_FILL}'></i>"
+                f"<i style='width:{soft / ceiling * 100:.1f}%;background:{AMBER_FILL}'></i>"
+                "</span>"
                 f"<span class='cause-count'>{count}</span>"
                 "</li>"
             )
@@ -672,9 +675,13 @@ def build_brief(assessments: list[Assessment], denominators: Denominators,
 
   <section id="s2">
     <div class="shead"><h2><span class="sno">02</span>Where the caveats come from</h2></div>
-    <p class="dek">Count of indicators flagged by each check. The bar length is the count;
-      the colour says whether the check stopped the indicator or merely qualified it.</p>
+    <p class="dek">Count of indicators flagged by each check. The bar length is that count;
+      the split says how many lines the check stopped outright and how many it only qualified.</p>
     <ul class="causes">{causes}</ul>
+    <div class="bandkey">
+      <span style="--c:{CRIMSON_FILL}">stopped the line: no data trail</span>
+      <span style="--c:{AMBER_FILL}">qualified it: reportable with a caveat</span>
+    </div>
   </section>
 
   <section id="s3">

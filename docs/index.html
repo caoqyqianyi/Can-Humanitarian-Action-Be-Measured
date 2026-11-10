@@ -135,7 +135,7 @@ ul.causes li{display:grid;grid-template-columns:140px 1fr 34px;align-items:cente
              padding:7px 0;font-size:13px;border-bottom:1px solid var(--hair);}
 ul.causes li:last-child{border-bottom:0;}
 .cause-name{color:var(--ink);}
-.cause-bar{height:8px;background:var(--hair);}
+.cause-bar{height:10px;background:var(--hair);display:flex;}
 .cause-bar i{display:block;height:100%;}
 .cause-count{text-align:right;font-variant-numeric:tabular-nums;color:var(--slate);}
 
@@ -209,7 +209,7 @@ a{color:var(--teal);}
 
   <div class="top">
     <div class="brand">Aadesk <span>&middot; results framework audit</span></div>
-    <div class="issue">10 November 2026, 20:36 UTC</div>
+    <div class="issue">10 November 2026, 20:56 UTC</div>
   </div>
 
   <h1>Somalia–Yemen multi-country results framework</h1>
@@ -256,9 +256,13 @@ a{color:var(--teal);}
 
   <section id="s2">
     <div class="shead"><h2><span class="sno">02</span>Where the caveats come from</h2></div>
-    <p class="dek">Count of indicators flagged by each check. The bar length is the count;
-      the colour says whether the check stopped the indicator or merely qualified it.</p>
-    <ul class="causes"><li><span class='cause-name'>availability</span><span class='cause-bar'><i style='width:100%;background:#a05a1e'></i></span><span class='cause-count'>11</span></li><li><span class='cause-name'>disclosure</span><span class='cause-bar'><i style='width:55%;background:#a05a1e'></i></span><span class='cause-count'>6</span></li><li><span class='cause-name'>cadence</span><span class='cause-bar'><i style='width:18%;background:#a05a1e'></i></span><span class='cause-count'>2</span></li><li><span class='cause-name'>disaggregation</span><span class='cause-bar'><i style='width:9%;background:#a05a1e'></i></span><span class='cause-count'>1</span></li><li><span class='cause-name'>match</span><span class='cause-bar'><i style='width:9%;background:#8b2a33'></i></span><span class='cause-count'>1</span></li></ul>
+    <p class="dek">Count of indicators flagged by each check. The bar length is that count;
+      the split says how many lines the check stopped outright and how many it only qualified.</p>
+    <ul class="causes"><li><span class='cause-name'>availability</span><span class='cause-bar'><i style='width:18.2%;background:#a52a3a'></i><i style='width:81.8%;background:#e3a01f'></i></span><span class='cause-count'>11</span></li><li><span class='cause-name'>disclosure</span><span class='cause-bar'><i style='width:0.0%;background:#a52a3a'></i><i style='width:54.5%;background:#e3a01f'></i></span><span class='cause-count'>6</span></li><li><span class='cause-name'>cadence</span><span class='cause-bar'><i style='width:0.0%;background:#a52a3a'></i><i style='width:18.2%;background:#e3a01f'></i></span><span class='cause-count'>2</span></li><li><span class='cause-name'>disaggregation</span><span class='cause-bar'><i style='width:0.0%;background:#a52a3a'></i><i style='width:9.1%;background:#e3a01f'></i></span><span class='cause-count'>1</span></li><li><span class='cause-name'>match</span><span class='cause-bar'><i style='width:9.1%;background:#a52a3a'></i><i style='width:0.0%;background:#e3a01f'></i></span><span class='cause-count'>1</span></li></ul>
+    <div class="bandkey">
+      <span style="--c:#a52a3a">stopped the line: no data trail</span>
+      <span style="--c:#e3a01f">qualified it: reportable with a caveat</span>
+    </div>
   </section>
 
   <section id="s3">
