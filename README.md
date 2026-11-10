@@ -1,6 +1,8 @@
-# aadesk
+# Can humanitarian action be measured?
 
 **An audit desk for humanitarian results frameworks: check whether an indicator can actually be measured — before the proposal is signed — then build the denominator from open, licensed, checksum-verified data.**
+
+<sub>The package and CLI are called <code>aadesk</code>; the repository is named after the question it answers.</sub>
 
 <p>
   <img alt="tests" src="https://img.shields.io/badge/tests-36%20passed-0f6b5c">
@@ -349,7 +351,7 @@ Field list and the reason for each relationship: [`output/powerbi/model.md`](out
 
 The repository is public, so the brief can be read without cloning:
 
-**https://caoqyqianyi.github.io/aa-data-desk/**
+**https://caoqyqianyi.github.io/can-humanitarian-action-be-measured/**
 
 That URL is `docs/index.html` served by Pages, branch `main`, folder `/docs` —
 the same file as `output/brief.html`, copied by `make pages`.
